@@ -25,6 +25,8 @@ body {
 
 .title {
       color: #e3b04b;
+      font-weight: bold;
+
 }
 
 .description {
@@ -42,7 +44,7 @@ body {
       height: 2em;
       background-color: transparent;
       z-index: 80;
-      bottom: 25px;
+      bottom: 35px;
       position: absolute;
       border-width: 0 0.25em 0.25em 0;
       border-style: solid;
@@ -55,7 +57,7 @@ body {
       height: 2em;
       background-color: transparent;
       z-index: 80;
-      bottom: 40px;
+      bottom: 50px;
       position: absolute;
       border-width: 0 0.25em 0.25em 0;
       border-style: solid;

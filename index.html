@@ -1,24 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
-    <title>RockStars</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand">RockStars</a>
-        <div class="d-flex">
-          <button class="btn btn-info mx-1">Sign In</button>
-          <button class="btn btn-info">Sign Up</button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <!-- Bootstrap & splide -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/splide.min.css">
+  <!-- Customize style -->
+  <link rel="stylesheet" href="style.css" />
+
+  <title>RockStars</title>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-dark bg-opacity-75 sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white">RockStars</a>
+      <div class="hstack gap-2">
+        <a href="signin.html" class="btn btn-outline-warning">Sign In</a>
+        <div class="vr"></div>
+        <a href="signup.html" class="btn btn-warning ">Sign Up</a>
+      </div>
+    </div>
+  </nav>
+  <div class="description">
+
+    <!-- Description -->
+    <div class="bg-image py-5">
+      <div class="container">
+        <div class="row py-5">
+          <h4 class="text-center shadows title py-5">Welcome to the best website for musical instrument in MOROCCO
+          </h4>
+        </div>
+        <div class="row py-1">
+          <div class="col align-self-center">
+            <p class="text-center text-white shadows">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam quisquam aut eos dolorum
+              omnis expedita,aspernatur laborum laudantium in aliquid illo porro consectetur ad et voluptas quia
+              laboriosam
+              a harum!
+            </p>
+          </div>
+          <div>
+            <span class="arrow arrow-1">
+            </span>
+            <span class="arrow arrow-2">
+            </span>
+          </div>
         </div>
       </div>
-    </nav>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-  </body>
+    </div>
+  </div>
+  <!-- Brands -->
+  <div class="container py-5">
+    <h3 class="text-center">Brands</h3>
+    <hr>
+    <div class="row py-3">
+      <div class="splide" aria-label="Splide Basic HTML Example">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide">
+              <div class="card" style="width: auto;">
+                <div class="card-body">
+                  <img src="img/brands/yamaha.jpg" height="35px" alt="YAMAHA">
+                </div>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="card" style="width: auto;">
+                <div class="card-body">
+                  <img src="img/brands/tama.png" height="35px" alt="TAMA">
+                </div>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="card" style="width: auto;">
+                <div class="card-body">
+                  <img src="img/brands/kawai.png" height="35px" alt="KAWAI">
+                </div>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="card" style="width: auto;">
+                <div class="card-body">
+                  <img src="img/brands/gibson.png" height="35px" alt="GIBSON">
+                </div>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="card" style="width: auto;">
+                <div class="card-body">
+                  <img src="img/brands/shure.png" height="35px" alt="SHURE">
+                </div>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="card" style="width: auto;">
+                <div class="card-body">
+                  <img src="img/brands/fender.png" height="35px" alt="FENDER">
+                </div>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="card" style="width: auto;">
+                <div class="card-body">
+                  <img src="img/brands/sennheiser.png" height="35px" alt="SENNHEISER">
+                </div>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="card" style="width: auto;">
+                <div class="card-body">
+                  <img src="img/brands/roland.png" height="35px" alt="ROLAND">
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Categories -->
+  <div class="container text-center py-0">
+    <h3 class="text-center">Categories</h3>
+    <hr>
+
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 py-3">
+
+      <div class="col">
+        <div class="card ">
+          <img src="img/categories/Pianos.jpg" class="card-img-top" alt="...">
+          <div class="card-footer">
+            <h5 class="card-title">Pianos</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card ">
+          <img src="img/categories/Keyboard-Instruments.jpg" alt="...">
+          <div class="card-footer">
+            <h5 class="card-title">Keyboard Instruments</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card ">
+          <img src="img/categories/Guitars, Basses, & Amps.webp" class="card-img-top" alt="...">
+          <div class="card-footer">
+            <h5 class="card-title">Guitars, Basses, & Amps</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card ">
+          <img src="img/categories/Drums.webp" class="card-img-top" alt="...">
+          <div class="card-footer">
+            <h5 class="card-title">Drums</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card ">
+          <img src="img/categories/Brass & Woodwinds.webp" class="card-img-top" alt="...">
+          <div class="card-footer">
+            <h5 class="card-title">Brass & Woodwinds</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card ">
+          <img src="img/categories/Strings.webp" class="card-img-top" alt="...">
+          <div class="card-footer">
+            <h5 class="card-title">Strings</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card ">
+          <img src="img/categories/Percussion.webp" class="card-img-top" alt="...">
+          <div class="card-footer">
+            <h5 class="card-title">Percussion</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card ">
+          <img src="img/categories/Synthesizers & Music Production Tools.jpg" class="card-img-top" alt="...">
+          <div class="card-footer">
+            <h5 class="card-title">Synthesizers & Music Production Tools</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card ">
+          <img src="img/categories/Electronic Entertainment Instruments.webp" class="card-img-top" alt="...">
+          <div class="card-footer">
+            <h5 class="card-title">Electronic Entertainment Instruments</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card ">
+          <img src="img/categories/Audio & Visual.jpg" class="card-img-top" alt="...">
+          <div class="card-footer">
+            <h5 class="card-title">Audio & Visual</h5>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="container">
+    Made with ❤️ by ABDELGHAFOUR AOUAD 🌪
+  </footer>
+
+
+
+  <!-- Scripts JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
 </html>

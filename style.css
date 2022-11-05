@@ -1,3 +1,94 @@
+body {
+      font-family: 'Poppins', sans-serif;
+}
+
 .navbar-brand {
       font-family: 'Poor Story', cursive;
+      font-size: xx-large !important;
+}
+
+.shadows {
+      text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.7);
+}
+
+.btn-warning {
+      background-color: #e3b04b;
+}
+
+.btn-outline-warning {
+      color: #e3b04b;
+}
+
+.btn-outline-warning:hover {
+      background-color: #e3b04b;
+}
+
+.title {
+      color: #e3b04b;
+}
+
+.description {
+      background-image: url('img/concert3.png');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center top;
+      height: 100vh;
+      top: -74px !important;
+      position: relative;
+}
+
+.arrow-1 {
+      width: 2em;
+      height: 2em;
+      background-color: transparent;
+      z-index: 80;
+      bottom: 25px;
+      position: absolute;
+      border-width: 0 0.25em 0.25em 0;
+      border-style: solid;
+      border-color: #e3b04b;
+      animation: scrolldown 1.2s ease-in-out infinite 0.15s;
+}
+
+.arrow-2 {
+      width: 2em;
+      height: 2em;
+      background-color: transparent;
+      z-index: 80;
+      bottom: 40px;
+      position: absolute;
+      border-width: 0 0.25em 0.25em 0;
+      border-style: solid;
+      border-color: #e3b04b;
+      animation: scrolldown 1.2s ease-in-out infinite;
+}
+
+.arrow {
+      left: 50%;
+      transform: translateY(0%) rotate(45deg);
+
+      opacity: 0;
+}
+
+@keyframes scrolldown {
+      0% {
+            transform: translateY(20%) rotate(45deg);
+            opacity: 0.7;
+      }
+
+      50% {
+            transform: translateY(0%) rotate(45deg);
+            opacity: 0.2;
+      }
+
+      100% {
+            transform: translateY(20%) rotate(45deg);
+            opacity: 0.7;
+      }
+}
+
+footer {
+      font-size: small;
+      color: gray;
+      padding: 2rem 0 1rem 0;
 }

@@ -1,0 +1,170 @@
+body {
+      font-family: 'Poppins', sans-serif;
+}
+
+.navbar-brand {
+      font-family: 'Rock Salt', cursive;
+}
+
+.shadows {
+      text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.7);
+}
+
+.btn-warning {
+      background-color: #e3b04b;
+}
+
+.btn-outline-warning {
+      color: #e3b04b;
+}
+
+.btn-outline-warning:hover {
+      background-color: #e3b04b;
+}
+
+.title {
+      color: #e3b04b;
+      font-weight: bold;
+      font-family: 'Poor Story', cursive;
+}
+
+.description {
+      background-image: url('/assets/img/concert3.png');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center top;
+      min-height: 105vh;
+      top: -74px !important;
+      position: relative;
+}
+
+.cover {
+      background-image: url('/assets/img/concert3.png');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center top;
+      min-height: 105vh;
+      /* top: -74px !important; */
+      position: relative;
+}
+
+.arrow-1 {
+      width: 2em;
+      height: 2em;
+      background-color: transparent;
+      z-index: 80;
+      bottom: 35px;
+      position: absolute;
+      border-width: 0 0.25em 0.25em 0;
+      border-style: solid;
+      border-color: #e3b04b;
+      animation: scrolldown 1.2s ease-in-out infinite 0.15s;
+}
+
+.arrow-2 {
+      width: 2em;
+      height: 2em;
+      background-color: transparent;
+      z-index: 80;
+      bottom: 50px;
+      position: absolute;
+      border-width: 0 0.25em 0.25em 0;
+      border-style: solid;
+      border-color: #e3b04b;
+      animation: scrolldown 1.2s ease-in-out infinite;
+}
+
+.arrow {
+      left: 50%;
+      transform: translateY(0%) rotate(45deg);
+
+      opacity: 0;
+}
+
+@keyframes scrolldown {
+      0% {
+            transform: translateY(20%) rotate(45deg);
+            opacity: 0.7;
+      }
+
+      50% {
+            transform: translateY(0%) rotate(45deg);
+            opacity: 0.2;
+      }
+
+      100% {
+            transform: translateY(20%) rotate(45deg);
+            opacity: 0.7;
+      }
+}
+
+a {
+      text-decoration: none;
+}
+
+.footer {
+      /* background-color: #3f51b5; */
+      background-image: url(/assets/img/concert4.png);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center top;
+      position: relative;
+      text-shadow: 0px 0px 6px rgb(0 0 0);
+}
+
+footer {
+      font-size: small;
+      color: gray;
+      padding: .75rem 0;
+}
+
+
+.profile-card {
+      background-color: #FFF;
+      box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+      background-position: center;
+      overflow: hidden;
+      position: relative;
+      margin: 10px auto;
+      cursor: pointer;
+      border-radius: 10px;
+}
+
+.profile-card img {
+      transition: all linear 0.25s;
+}
+
+.profile-card .profile-name {
+      position: absolute;
+      left: 5px;
+      bottom: 20px;
+      color: #FFF;
+      text-shadow: 0px 0px 15px rgba(0, 0, 0);
+      font-weight: bold;
+      transition: all linear 0.25s;
+}
+
+.profile-card:hover img {
+      filter: grayscale(100%);
+}
+
+.profile-card:hover .profile-name {
+      bottom: 30px;
+}
+
+.nav-pills .nav-link.active {
+      background-color: #e3b04b !important;
+}
+
+.nav-link,
+.nav-link:focus,
+.nav-link:hover {
+      color: #e3b04b;
+}
+
+.test {
+      border-radius: 1rem;
+      background-color: #000000ad !important;
+      margin: 1rem;
+      padding: 4rem;
+}

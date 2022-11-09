@@ -2,7 +2,7 @@
 if (document.getElementById('form_register')) {
   const register_validation = new JustValidate('#form_register');
   register_validation
-    .addField('#first_name', [
+    .addField('#first-name', [
       {
         rule: 'required',
         errorMessage: 'First name is required',
@@ -16,7 +16,7 @@ if (document.getElementById('form_register')) {
         value: 30,
       },
     ])
-    .addField('#last_name', [
+    .addField('#last-name', [
       {
         rule: 'required',
         errorMessage: 'Last name is required',
@@ -49,7 +49,7 @@ if (document.getElementById('form_register')) {
         rule: 'password',
       },
     ])
-    .addField('#repeat_password', [
+    .addField('#repeat-password', [
       {
         rule: 'required',
         errorMessage: 'Repeat Password is required',

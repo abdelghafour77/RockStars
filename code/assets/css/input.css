@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#background-img {
+  background-image: url('../img/concert3.png');
+  height: 50%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+#footer-img {
+  background-image: url('../img/concert4.png');
+  height: 50%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* ********** Arrows to scroll down ********** */
+
+.arrow-1 {
+  width: 2em;
+  height: 2em;
+  background-color: transparent;
+  z-index: 80;
+  bottom: 85px;
+  position: absolute;
+  border-width: 0 0.25em 0.25em 0;
+  border-style: solid;
+  border-color: #e3b04b;
+  animation: scrolldown 1.2s ease-in-out infinite 0.15s;
+}
+
+.arrow-2 {
+  width: 2em;
+  height: 2em;
+  background-color: transparent;
+  z-index: 80;
+  bottom: 100px;
+  position: absolute;
+  border-width: 0 0.25em 0.25em 0;
+  border-style: solid;
+  border-color: #e3b04b;
+  animation: scrolldown 1.2s ease-in-out infinite;
+}
+
+.arrow {
+  left: 50%;
+  transform: translateY(0%) rotate(45deg);
+
+  opacity: 0;
+}
+
+@keyframes scrolldown {
+  0% {
+    transform: translateY(20%) rotate(45deg);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(0%) rotate(45deg);
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: translateY(20%) rotate(45deg);
+    opacity: 0.7;
+  }
+}

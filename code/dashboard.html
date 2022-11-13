@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+  <!-- Style CSS -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <title>Dashboard - RockStars</title>
+</head>
+
+<body class="font-Poppins">
+  <!-- Statistics -->
+  <div class="flex flex-row ">
+
+
+    <div class="flex flex-col  space-y-5 justify-between min-h-screen w-60 px-2 py-4 bg-gray-50">
+
+      <div class=" flex items-center justify-between text-gray-600 text-3xl px-5"><b>Reservations</b></div>
+
+      <div class="flex flex-col flex-auto">
+        <a href="dashboard.html" class="p-2 hover:bg-pink-100">
+          <div class="flex flex-row space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-700" fill="none" viewBox="0 0 24 24"
+              stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
+
+            <h4 class="font-bold text-gray-500 hover:text-pink-600 ">Dashboard</h4>
+          </div>
+        </a>
+        <a href="users.html" class="p-2 hover:bg-pink-100 ">
+          <div class="flex flex-row space-x-3 ">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-700" fill="none" viewBox="0 0 24 24"
+              stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+            </svg>
+            <h4 class="font-regular text-gray-500 hover:text-pink-600">Users</h4>
+          </div>
+        </a>
+        <a href="categories.html" class="p-2 hover:bg-pink-100">
+          <div class="flex flex-row space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-700" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+            </svg>
+            <h4 class="font-regular text-gray-500 hover:text-pink-600">Categories</h4>
+          </div>
+        </a>
+        <a href="brands.html" class="p-2 hover:bg-pink-100">
+          <div class="flex flex-row space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-700" fill="none" viewBox="0 0 24 24"
+              stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
+            </svg>
+
+            <h4 class="font-regular text-gray-500 hover:text-pink-600">Brands</h4>
+          </div>
+        </a>
+        <a href="products.html" class="p-2 hover:bg-pink-100">
+          <div class="flex flex-row space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-700" fill="none" viewBox="0 0 24 24"
+              stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+            </svg>
+
+            <h4 class="font-regular text-gray-500 hover:text-pink-600">Products</h4>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="flex flex-col ">
+        <button class="rounded-full bg-pink-500 py-2 text-white text-lg">Logout</button>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="flex-auto ">
+      <div class="flex flex-col">
+        <div class="flex flex-col bg-white h-24 p-2 drop-shadow-2xl">
+          <div class="flex flex-row space-x-3">
+
+            <h4 class="font-bold text-gray-500 p-1 ">Dashboard</h4>
+
+          </div>
+          <p class="text-gray-400 p-1">30th October 2020 | 1st November 2020</p>
+        </div>
+        <div class="bg-blue-50 min-h-screen">
+          <div class=" mt-8 grid lg:grid-cols-3 sm:grid-cols-2 p-4 gap-10 ">
+            <!--Grid starts here-->
+            <div class="flex items-center justify-between p-5 bg-white rounded shadow-sm">
+              <div>
+                <div class="text-sm text-gray-400 ">Check in Today</div>
+                <div class="flex items-center pt-1">
+                  <div class="text-3xl font-medium text-gray-600 ">34</div>
+                </div>
+              </div>
+              <div class="text-pink-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z"
+                    clip-rule="evenodd" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between p-5 bg-white rounded shadow-sm">
+              <div>
+                <div class="text-sm text-gray-400 ">Check Out Today</div>
+                <div class="flex items-center pt-1">
+                  <div class="text-3xl font-medium text-gray-600 ">44</div>
+                </div>
+              </div>
+              <div class="text-pink-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                    clip-rule="evenodd" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between p-5 bg-white rounded shadow-sm">
+              <div>
+                <div class="text-sm text-gray-400 ">Total Properties</div>
+                <div class="flex items-center pt-1">
+                  <div class="text-3xl font-medium text-gray-600 ">1000</div>
+                </div>
+              </div>
+              <div class="text-pink-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Grid ends here..-->
+          </div>
+
+          <div class=" mt-5 grid  lg:grid-cols-3  md:grid-cols-3 p-4 gap-3">
+
+            <div class="col-span-2 flex flex-col   p-8 bg-white rounded shadow-sm">
+              <b class="flex flex-row text-gray-500">Property Release for today</b>
+              <canvas class="p-5" id="chartLine"></canvas>
+            </div>
+
+            <div class=" flex flex-col   p-5 bg-white rounded shadow-sm">
+              <b class="flex flex-row text-gray-500">Occupancy Percentage</b>
+              <canvas class="p-5" id="chartRadar"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Foooter -->
+  <footer class="bg-gray-900">
+    <!-- Credit Section -->
+    <div class="py-3 bg-transparentBlack">
+      <div class="container mx-auto">
+        <p class="text-shadow-lg text-xs md:text-base text-center text-white">Made with ❤️ by ABDELGHAFOUR AOUAD 🌪</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Required chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Chart line -->
+  <script>
+    const labels = ["January", "February", "March", "April", "May", "June"];
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: "My First dataset",
+        backgroundColor: "hsl(252, 82.9%, 67.8%)",
+        borderColor: "hsl(252, 82.9%, 67.8%)",
+        data: [0, 10, 5, 2, 20, 30, 45],
+      },],
+    };
+
+    const configLineChart = {
+      type: "line",
+      data,
+      options: {},
+    };
+
+    var chartLine = new Chart(
+      document.getElementById("chartLine"),
+      configLineChart
+    );
+  </script>
+
+  <script>
+    const dataRadar = {
+      labels: [
+        "Reservation 1",
+        "Reservation 2",
+        "Reservation 3",
+        "Reservation 4",
+        "Reservation 5",
+        "Reservation 6",
+        "Reservation 7",
+      ],
+      datasets: [{
+        label: "My First Dataset",
+        data: [65, 59, 90, 81, 56, 55, 40],
+        fill: true,
+        backgroundColor: "rgba(255,105,180)",
+        borderColor: "rgb(255,20,147)",
+        pointBackgroundColor: "rgb(133, 105, 241)",
+        pointBorderColor: "#fff",
+        pointHoverBackgroundColor: "#fff",
+        pointHoverBorderColor: "rgb(133, 105, 241)",
+      },
+      {
+        label: "My Second Dataset",
+        data: [28, 48, 40, 19, 96, 27, 100],
+        fill: true,
+        backgroundColor: "rgba(255,105,180)",
+        borderColor: "rgb(0,191,255)",
+        pointBackgroundColor: "rgb(54, 162, 235)",
+        pointBorderColor: "#fff",
+        pointHoverBackgroundColor: "#fff",
+        pointHoverBorderColor: "rgb(54, 162, 235)",
+      },
+      ],
+    };
+
+    const configRadarChart = {
+      type: "radar",
+      data: dataRadar,
+      options: {},
+    };
+
+    var chartBar = new Chart(
+      document.getElementById("chartRadar"),
+      configRadarChart
+    );
+  </script>
+
+</body>
+
+</html>

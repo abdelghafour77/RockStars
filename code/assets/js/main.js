@@ -65,7 +65,13 @@ if (document.getElementById('form_register')) {
         },
         errorMessage: 'Passwords should be the same',
       },
-    ]);
+    ])
+    .onSuccess((event) => {
+      event.currentTarget.submit();
+    });
+}
+function setType(type) {
+  document.getElementById('type').setAttribute("name", type);
 }
 
 if (document.getElementById('form_login')) {
@@ -91,4 +97,18 @@ if (document.getElementById('form_login')) {
         rule: 'password',
       },
     ])
+}
+if (document.getElementById('dropdown-card')) {
+  // i need to fix problem of dropdown
+  let dropdown_card = $("#dropdown-card");
+  $("#dropdown").click(function () {
+    dropdown_card.toggle();
+  });
+  $(document).mouseup(function (e) {
+    if (!dropdown_card.is(e.target) && dropdown_card.has(e.target).length === 0) {
+      dropdown_card.hide();
+    } else {
+      dropdown_card.toggle();
+    }
+  });
 }

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +46,7 @@
     <!-- Hero Section -->
     <section id="hero" class="flex justify-center min-h-full pt-2 ">
       <!-- items-center -->
-      <div class="container felx glass-effect md:felx-row items-center  mx-auto my-20 mb-40 space-y-0 md:space-y-0 max-h-fit">
+      <div class="container felx glass-effect md:felx-row items-center mx-auto my-20 mb-40 space-y-0 md:space-y-0 max-h-fit max-w-2xl">
         <h3 class="text-3xl text-center font-bold p-4">Register</h3>
         <form id="form_register" action="scripts.php" method="POST" class=" px-8 pt-6 pb-8 mb-4">
           <div class="mb-4">
@@ -168,7 +171,7 @@
 
     </div>
     <!-- Credit Section -->
-    <div class=" py-3 bg-transparentBlack">
+    <div class="py-2 bg-transparentBlack">
       <div class="container mx-auto">
         <p class="text-shadow-lg text-xs md:text-base text-center text-white">Made with ❤️ by ABDELGHAFOUR AOUAD 🌪</p>
       </div>
@@ -176,6 +179,31 @@
   </footer>
   <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/sweetalert.js"></script>
+  <script>
+    <?php if (isset($_SESSION['message'])) { ?>
+      const Toast = Swal.mixin({
+        width: '25em',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 4000,
+        timerProgressBar: false,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: '<?= $_SESSION['type_message'] ?>',
+        title: '<?= $_SESSION['message'] ?>'
+      })
+    <?php
+      unset($_SESSION['type_message']);
+      unset($_SESSION['message']);
+    } ?>
+  </script>
 </body>
 
 </html>

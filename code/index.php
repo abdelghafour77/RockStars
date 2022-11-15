@@ -86,7 +86,7 @@ $categories = getAllCategories();
   <!-- Categories Section -->
   <section id="categories" class="container pb-9 mx-auto p-6">
     <h3 class="text-xl text-center font-bold p-4">Categories</h3>
-    <div class="grid grid-cols-1 py-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+    <div class="grid grid-cols-1 py-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2">
 
       <?php
       foreach ($categories as  $category) { ?>

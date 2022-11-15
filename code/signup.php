@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,22 +46,22 @@
     <!-- Hero Section -->
     <section id="hero" class="flex justify-center min-h-full pt-2 ">
       <!-- items-center -->
-      <div class="container felx glass-effect md:felx-row items-center  mx-auto my-20 mb-40 space-y-0 md:space-y-0 max-h-fit">
+      <div class="container felx glass-effect md:felx-row items-center mx-auto my-20 mb-40 space-y-0 md:space-y-0 max-h-fit max-w-2xl">
         <h3 class="text-3xl text-center font-bold p-4">Sign Up</h3>
-        <form id="form_login" action="" method="" class=" px-8 pt-6 pb-8 mb-4">
+        <form id="form_login" action="scripts.php" method="post" class="px-8 pt-6 pb-8 mb-4">
           <div class="mb-4">
             <label class="block text-gray-900 text-sm font-bold mb-2" for="email">
               Email
             </label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email">
+            <input name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email">
           </div>
           <div class="mb-4">
             <label class="block text-gray-900 text-sm font-bold mb-2" for="password">
               Password
             </label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password">
+            <input name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password">
           </div>
-
+          <input type="hidden" name="signup">
           <div class="flex items-center justify-between">
             <a class="inline-block align-baseline font-bold text-sm text-gold hover:text-lightGold" href="#">
               Forgot Password?
@@ -159,6 +162,31 @@
   </footer>
   <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/sweetalert.js"></script>
+  <script>
+    <?php if (isset($_SESSION['message'])) { ?>
+      const Toast = Swal.mixin({
+        width: '25em',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 4000,
+        timerProgressBar: false,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: '<?= $_SESSION['type_message'] ?>',
+        title: '<?= $_SESSION['message'] ?>'
+      })
+    <?php
+      unset($_SESSION['type_message']);
+      unset($_SESSION['message']);
+    } ?>
+  </script>
 </body>
 
 </html>

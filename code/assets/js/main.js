@@ -70,9 +70,6 @@ if (document.getElementById('form_register')) {
       event.currentTarget.submit();
     });
 }
-function setType(type) {
-  document.getElementById('type').setAttribute("name", type);
-}
 
 if (document.getElementById('form_login')) {
   const login_validation = new JustValidate('#form_login');
@@ -97,6 +94,9 @@ if (document.getElementById('form_login')) {
         rule: 'password',
       },
     ])
+    .onSuccess((event) => {
+      event.currentTarget.submit();
+    });
 }
 if (document.getElementById('dropdown-card')) {
   // i need to fix problem of dropdown

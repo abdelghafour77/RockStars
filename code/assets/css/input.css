@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 #background-img {
-  background-image: url('../img/concert3.png');
+  background-image: url('../img/hero-bg.png');
   height: 50%;
   background-attachment: fixed;
   background-position: center;
@@ -13,7 +13,7 @@
 }
 
 #footer-img {
-  background-image: url('../img/concert4.png');
+  background-image: url('../img/footer-bg.png');
   height: 50%;
   background-attachment: fixed;
   background-position: center;
@@ -76,7 +76,7 @@
 
 .glass-effect {
   /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5.1px);

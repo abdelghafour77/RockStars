@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,35 +91,7 @@
 
     <div class="flex flex-col flex-1 h-full overflow-hidden">
       <!-- Navbar -->
-      <header class="flex-shrink-0 border-b">
-        <div class="flex items-center justify-end p-2">
-          <!-- Navbar right -->
-          <div class="relative flex items-center space-x-3">
-            <!-- avatar button -->
-            <div class="relative">
-              <button id="dropdown" class="p-1 bg-gray-200 rounded-full focus:outline-none focus:ring">
-                <img class="object-cover w-8 h-8 rounded-full" src="assets/img/users/404-1662642451.jfif" alt="Abdelghafour aouad" />
-              </button>
-
-              <!-- Dropdown card -->
-              <div id="dropdown-card" class="hidden absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max">
-                <div class="flex flex-col p-4 space-y-1 font-medium border-b">
-                  <span class="text-gray-800">abdelghafour AOUAD</span>
-                  <span class="text-sm text-gray-400">a.aouad@student.youcode.ma</span>
-                </div>
-                <ul class="flex flex-col p-2 my-2 space-y-1">
-                  <li>
-                    <a href="editProfil.php" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Edit profil</a>
-                  </li>
-                </ul>
-                <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
-                  <a href="#">Logout</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <?php include 'include/header-dashboard.php'; ?>
       <!-- Main content -->
       <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
         <!-- Main content header -->
@@ -204,6 +179,9 @@
   </div>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script src="assets/js/main.js"></script>
+  <?php
+  include 'include/alert.php';
+  ?>
 </body>
 
 </html>

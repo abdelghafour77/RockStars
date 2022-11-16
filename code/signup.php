@@ -23,25 +23,9 @@ session_start();
   <div id="background-img">
 
     <!-- Navbar -->
-    <nav class="relative container mx-auto p-4">
-
-      <!-- flex container -->
-      <div class="flex items-center justify-between">
-        <a href="index.php" class="pt-2">
-          <div class="font-RockStars font-semibold text-sm ms:text-xl md:text-xl text-white">
-            <span class="text-gold">R</span>ock<span class="text-gold">S</span>tars
-          </div>
-        </a>
-        <div class="flex space-x-3">
-          <a href="signup.php" class="block px-3 py-1 p-1 md:p-2 md:px-6 md:py-2 text-gold border border-gold rounded-lg baseline  hover:text-black hover:bg-lightGold hover:border-lightGold">
-            Sign Up
-          </a>
-          <a href="register.php" class="block px-3 py-1 p-1 md:p-2 md:px-6 md:py-2 bg-gold rounded-lg baseline text-white hover:bg-lightGold hover:text-black">
-            Register
-          </a>
-        </div>
-      </div>
-    </nav>
+    <?php
+    include 'include/navbar.php';
+    ?>
 
     <!-- Hero Section -->
     <section id="hero" class="flex justify-center min-h-full pt-2 ">
@@ -163,30 +147,9 @@ session_start();
   <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/sweetalert.js"></script>
-  <script>
-    <?php if (isset($_SESSION['message'])) { ?>
-      const Toast = Swal.mixin({
-        width: '25em',
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 4000,
-        timerProgressBar: false,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-
-      Toast.fire({
-        icon: '<?= $_SESSION['type_message'] ?>',
-        title: '<?= $_SESSION['message'] ?>'
-      })
-    <?php
-      unset($_SESSION['type_message']);
-      unset($_SESSION['message']);
-    } ?>
-  </script>
+  <?php
+  include 'include/alert.php';
+  ?>
 </body>
 
 </html>

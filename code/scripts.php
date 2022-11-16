@@ -4,6 +4,7 @@ include_once 'connection.php';
 
 if (isset($_POST['register'])) register();
 if (isset($_POST['signup'])) signup();
+
 function getAllBrands()
 {
       global $conn;
@@ -12,6 +13,7 @@ function getAllBrands()
       $res = mysqli_query($conn, $sql);
       return $res;
 }
+
 function getAllCategories()
 {
       global $conn;
@@ -20,6 +22,7 @@ function getAllCategories()
       $res = mysqli_query($conn, $sql);
       return $res;
 }
+
 function register()
 {
       extract($_POST);
@@ -51,6 +54,7 @@ function register()
       }
       header('location: signup.php');
 }
+
 function signup()
 {
       extract($_POST);
@@ -69,6 +73,11 @@ function signup()
       if ($ress) {
             $_SESSION['type_message'] = "success";
             $_SESSION['message'] = "Welcome to RockStars";
+            $_SESSION['id'] = $res['id'];
+            $_SESSION['first_name'] = $res['first_name'];
+            $_SESSION['last_name'] = $res['last_name'];
+            $_SESSION['email'] = $res['email'];
+            $_SESSION['picture'] = $res['picture'];
             header('location: dashboard.php');
             die();
       } else {
@@ -77,4 +86,13 @@ function signup()
             header('location: signup.php');
             die();
       }
+}
+
+function getAllUsers()
+{
+
+      global $conn;
+      $sql = "SELECT id, first_name, last_name, email, picture  FROM users";
+      $res = mysqli_query($conn, $sql);
+      return $res;
 }

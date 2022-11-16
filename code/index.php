@@ -25,18 +25,9 @@ $categories = getAllCategories();
   <!--  -->
   <div id="background-img">
     <!-- Navbar -->
-    <nav class="relative container mx-auto p-4">
-      <!-- flex container -->
-      <div class="flex items-center justify-between">
-        <a href="index.php" class="pt-2">
-          <div class="font-RockStars font-semibold text-sm ms:text-xl md:text-xl text-white"><span class="text-gold">R</span>ock<span class="text-gold">S</span>tars</div>
-        </a>
-        <div class="flex space-x-3">
-          <a href="signup.php" class="block px-3 py-1 p-1 md:p-2 md:px-6 md:py-2 text-gold border border-gold rounded-lg baseline hover:text-black hover:bg-lightGold hover:border-lightGold"> Sign Up </a>
-          <a href="register.php" class="block px-3 py-1 p-1 md:p-2 md:px-6 md:py-2 bg-gold rounded-lg baseline text-white hover:bg-lightGold hover:text-black"> Register </a>
-        </div>
-      </div>
-    </nav>
+    <?php
+    include 'include/navbar.php';
+    ?>
 
     <!-- Hero Section -->
     <section id="hero" class="flex justify-center min-h-screen pt-2 md:pt-20">
@@ -86,11 +77,11 @@ $categories = getAllCategories();
   <!-- Categories Section -->
   <section id="categories" class="container pb-9 mx-auto p-6">
     <h3 class="text-xl text-center font-bold p-4">Categories</h3>
-    <div class="grid grid-cols-1 py-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2">
+    <div class="grid grid-cols-1 py-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 ">
 
       <?php
       foreach ($categories as  $category) { ?>
-        <div class="flex">
+        <div class="flex justify-center">
           <div class="overflow-hidden aspect-video cursor-pointer rounded-xl relative group h-60">
             <div class="rounded-xl z-50 sm:opacity-0 opacity-100 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 pt-30 text-white flex items-end">
               <div>
@@ -176,8 +167,10 @@ $categories = getAllCategories();
     </div>
   </footer>
 
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
   <script src="assets/js/slide.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 <?php
-session_start();
+require_once 'scripts.php';
+$users = getAllUsers();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,35 +92,7 @@ session_start();
 
     <div class="flex flex-col flex-1 h-full overflow-hidden">
       <!-- Navbar -->
-      <header class="flex-shrink-0 border-b">
-        <div class="flex items-center justify-end p-2">
-          <!-- Navbar right -->
-          <div class="relative flex items-center space-x-3">
-            <!-- avatar button -->
-            <div class="relative">
-              <button id="dropdown" class="p-1 bg-gray-200 rounded-full focus:outline-none focus:ring">
-                <img class="object-cover w-8 h-8 rounded-full" src="assets/img/users/404-1662642451.jfif" alt="Abdelghafour aouad" />
-              </button>
-
-              <!-- Dropdown card -->
-              <div id="dropdown-card" class="hidden absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max">
-                <div class="flex flex-col p-4 space-y-1 font-medium border-b">
-                  <span class="text-gray-800">abdelghafour AOUAD</span>
-                  <span class="text-sm text-gray-400">a.aouad@student.youcode.ma</span>
-                </div>
-                <ul class="flex flex-col p-2 my-2 space-y-1">
-                  <li>
-                    <a href="editProfil.php" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Edit profil</a>
-                  </li>
-                </ul>
-                <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
-                  <a href="#">Logout</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <?php include 'include/header-dashboard.php'; ?>
       <!-- Main content -->
       <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
         <!-- Main content header -->
@@ -166,30 +139,34 @@ session_start();
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
-                    <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                          <div class="flex-shrink-0 w-10 h-10">
-                            <img class="w-10 h-10 rounded-full" src="assets/img/users/404-1662642451.jfif" alt="" />
+                    <?php
+                    foreach ($users as $user) {
+
+                    ?>
+                      <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                            <div class="flex-shrink-0 w-10 h-10">
+                              <img class="w-10 h-10 rounded-full" src="assets/img/users/<?php echo ($user['picture']) ?  $user['picture'] :  'avatar.png' ?>" alt="<?= $user['first_name'] . '_' . $user['last_name'] ?>" />
+                            </div>
+                            <div class="ml-4">
+                              <div class="text-sm font-medium text-gray-900"><?= $user['first_name'] . ' ' . $user['last_name'] ?></div>
+                              <div class="text-sm text-gray-500"><?= $user['email'] ?></div>
+                            </div>
                           </div>
-                          <div class="ml-4">
-                            <div class="text-sm font-medium text-gray-900">Abdelghafour AOUAD</div>
-                            <div class="text-sm text-gray-500">a.aouad@student.youcode.ma</div>
-                          </div>
-                        </div>
-                      </td>
-                      <!-- <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
-                        <div class="text-sm text-gray-500">Optimization</div>
-                      </td> -->
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"> Active </span>
-                      </td>
-                      <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">Admin</td>
-                      <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                      </td>
-                    </tr>
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"> Active </span>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">Admin</td>
+                        <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                          <a href="edit.php?id_user=<?= $user['id'] ?>" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                        </td>
+                      </tr>
+                    <?php
+                    }
+                    ?>
                   </tbody>
                 </table>
               </div>
@@ -208,30 +185,9 @@ session_start();
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/sweetalert.js"></script>
-  <script>
-    <?php if (isset($_SESSION['message'])) { ?>
-      const Toast = Swal.mixin({
-        width: '25em',
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 4000,
-        timerProgressBar: false,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-
-      Toast.fire({
-        icon: '<?= $_SESSION['type_message'] ?>',
-        title: '<?= $_SESSION['message'] ?>'
-      })
-    <?php
-      unset($_SESSION['type_message']);
-      unset($_SESSION['message']);
-    } ?>
-  </script>
+  <?php
+  include 'include/alert.php';
+  ?>
 </body>
 
 </html>

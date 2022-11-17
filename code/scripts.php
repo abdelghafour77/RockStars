@@ -96,3 +96,24 @@ function getAllUsers()
       $res = mysqli_query($conn, $sql);
       return $res;
 }
+
+function addProduct()
+{
+      extract($_POST);
+      global $conn;
+
+      $sql = "INSERT INTO products (model, category_id, brand_id, password, created_at)
+                values (?,?,?,?,?)";
+      $statement = mysqli_prepare($conn, $sql);
+      mysqli_stmt_bind_param($statement, 'sssss', $first_name, $last_name, $email, $password, date("Y-m-d H:i:s"));
+      $res = mysqli_stmt_execute($statement);
+
+      if ($res) {
+            $_SESSION['type_message'] = "success";
+            $_SESSION['message'] = "Account are created with success";
+      } else {
+            $_SESSION['type_message'] = "error";
+            $_SESSION['message'] = "Error in creation ! try again later";
+      }
+      header('location: signup.php');
+}

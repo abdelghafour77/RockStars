@@ -102,80 +102,73 @@ session_start();
         <!-- Table see (https://tailwindui.com/components/application-ui/lists/tables) -->
         <div class="flex items-center justify-between">
           <h3 class="mt-6 text-xl">All Products</h3>
-          <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+          <button onclick="openModal()" type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
             Add products
           </button>
         </div>
         <!-- Modal -->
-        <!-- Button trigger modal -->
-        <button type="button" class="px-6
-      py-2.5
-      bg-blue-600
-      text-white
-      font-medium
-      text-xs
-      leading-tight
-      uppercase
-      rounded
-      shadow-md
-      hover:bg-blue-700 hover:shadow-lg
-      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-      active:bg-blue-800 active:shadow-lg
-      transition
-      duration-150
-      ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Launch demo modal
-        </button>
+        <div id="modal" class="h-screen w-full hidden fixed left-0 top-0 justify-center items-center bg-black bg-opacity-50">
+          <div class="bg-white rounded shadow-lg md:w-1/3 md:mx-0 w-full mx-2">
+            <form action="scripts.php" method="post">
+              <input type="hidden" id="type" name="add_product">
+              <div class="border-b px-4 py-2">
+                <h3>Add Product</h3>
+              </div>
+              <div class="p-2">
+                <div class="flex justify-center">
+                  <div class="mb-1 xl:w-96">
+                    <div class="mb-2">
+                      <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Model</label>
+                      <input type="text" id="model" name="model" placeholder="Model" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                    </div>
+                    <div class="mb-2 flex">
+                      <div class="mr-2 w-1/2">
+                        <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Model</label>
+                        <select name="brand" id="brand" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+                          <option value="1">yamaha</option>
+                        </select>
+                      </div>
+                      <div class="ml-2 w-1/2">
+                        <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Category</label>
+                        <select name="category" id="category" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+                          <option value="1">Strings</option>
+                        </select>
+                      </div>
+                    </div>
 
-        <!-- Modal -->
-        <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog relative w-auto pointer-events-none">
-            <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-              <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="mb-2 flex">
+                      <div class="mr-2 w-1/2">
+                        <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Quantity</label>
+                        <input type="number" id="quantity" name="quantity" placeholder="Quantity" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                      </div>
+                      <div class="ml-2 w-1/2">
+                        <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Price</label>
+                        <input type="number" id="price" name="price" placeholder="Price" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                      </div>
+                    </div>
+
+                    <div class="mb-2">
+                      <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Description</label>
+                      <textarea name="description" id="" cols="30" rows="3" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"> </textarea>
+                    </div>
+                    <div class="mb-1">
+                      <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Picture</label>
+                      <input class="form-control cursor-pointer block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-describedby="file_input_help" id="file_input" type="file" />
+                      <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="modal-body relative p-4">
-                Modal body text goes here.
+              <div class="flex justify-end items-center w-100 border-t p-2">
+                <button type="button" onclick="closeModal()" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1">cancel</button>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white">save</button>
               </div>
-              <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                <button type="button" class="px-6
-          py-2.5
-          bg-purple-600
-          text-white
-          font-medium
-          text-xs
-          leading-tight
-          uppercase
-          rounded
-          shadow-md
-          hover:bg-purple-700 hover:shadow-lg
-          focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0
-          active:bg-purple-800 active:shadow-lg
-          transition
-          duration-150
-          ease-in-out" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="px-6
-      py-2.5
-      bg-blue-600
-      text-white
-      font-medium
-      text-xs
-      leading-tight
-      uppercase
-      rounded
-      shadow-md
-      hover:bg-blue-700 hover:shadow-lg
-      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-      active:bg-blue-800 active:shadow-lg
-      transition
-      duration-150
-      ease-in-out
-      ml-1">Save changes</button>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
+
+        <!-- Modal -->
+
         <!-- Modal -->
         <div class="flex flex-col mt-6">
           <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

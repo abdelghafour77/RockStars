@@ -112,3 +112,11 @@ if (document.getElementById('dropdown-card')) {
     }
   });
 }
+function openModal() {
+
+  $("#modal").removeClass("hidden").addClass("flex");
+}
+function closeModal() {
+
+  $("#modal").removeClass("flex").addClass("hidden");
+}

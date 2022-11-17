@@ -4,6 +4,9 @@ include_once 'connection.php';
 
 if (isset($_POST['register'])) register();
 if (isset($_POST['signup'])) signup();
+if (isset($_POST['add'])) addProduct();
+if (isset($_POST['update'])) updateProduct();
+if (isset($_POST['delete'])) deleteProduct();
 
 function getAllBrands()
 {
@@ -101,13 +104,174 @@ function addProduct()
 {
       extract($_POST);
       global $conn;
+      if ($_FILES['picture']['name'] != "") {
+            $fileName = $_FILES['picture']['name'];
+            $fileTmpName = $_FILES['picture']['tmp_name'];
+            $fileSize = $_FILES['picture']['size'];
+            $fileError = $_FILES['picture']['error'];
 
-      $sql = "INSERT INTO products (model, category_id, brand_id, password, created_at)
-                values (?,?,?,?,?)";
+            $fileExt = explode('.', $fileName);
+            $fileActualExt = strtolower(end($fileExt));
+            $allowed = array('jpg', 'png', 'jpeg', 'gif');
+
+            if (in_array($fileActualExt, $allowed)) {
+                  if ($fileError === 0) {
+                        if ($fileSize < 8388608) {  // 8MB
+                              $fileNameNew = date("dmy") . time() . "." . $fileActualExt; //create unique Id using time and date and name of 'cours'
+                              $fileNameNew = preg_replace('/\s+/', '_', $fileNameNew); //replace all space with "_"
+                              $fileDestination = "assets/img/products/" . $fileNameNew;
+                              move_uploaded_file($fileTmpName, $fileDestination);
+
+                              $sql = "INSERT INTO 
+                              `products`(`model`, `description`, `brands_id`, `categories_id`, `quantity`, `price`, `picture`, `created_at`, `updated_at`, `created_by`, `updated_by`) 
+                              VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                              $id = $_SESSION['id'];
+                              $time = date("Y-m-d H:i:s");
+                              $statement = mysqli_prepare($conn, $sql);
+                              mysqli_stmt_bind_param($statement, 'ssiiiisssii', $model, $description, $brand, $category, $quantity, $price, $fileNameNew, $time, $time, $id, $id);
+
+                              $res = mysqli_stmt_execute($statement);
+
+                              if ($res) {
+                                    $_SESSION['type_message'] = "success";
+                                    $_SESSION['message'] = "Account are created with success";
+                              } else {
+                                    $_SESSION['type_message'] = "error";
+                                    $_SESSION['message'] = "Error in creation ! try again later";
+                              }
+                        } else {
+                              $_SESSION['message'] = "Le fichier est trop grand";
+                        }
+                  } else {
+                        $_SESSION['message'] = "Erreur de téléchargement de fichier";
+                  }
+            } else {
+                  $_SESSION['message'] = "Erreur";
+            }
+      }
+      header('location: products.php');
+}
+function getAllProducts()
+{
+
+      global $conn;
+      $sql = "SELECT products.* , categories.name as category ,brands.name as brand FROM products INNER JOIN(brands) on brands.id= products.brands_id INNER JOIN(categories) on categories.id=products.categories_id";
+      $res = mysqli_query($conn, $sql);
+      return $res;
+}
+function updateProduct()
+{
+      extract($_POST);
+      global $conn;
+      if ($_FILES['picture']['name'] != "") {
+            $fileName = $_FILES['picture']['name'];
+            $fileTmpName = $_FILES['picture']['tmp_name'];
+            $fileSize = $_FILES['picture']['size'];
+            $fileError = $_FILES['picture']['error'];
+
+            $fileExt = explode('.', $fileName);
+            $fileActualExt = strtolower(end($fileExt));
+            $allowed = array('jpg', 'png', 'jpeg', 'gif');
+
+            if (in_array($fileActualExt, $allowed)) {
+                  if ($fileError === 0) {
+                        if ($fileSize < 8388608) {  // 8MB
+                              $fileNameNew = date("dmy") . time() . "." . $fileActualExt; //create unique Id using time and date and name of 'cours'
+                              $fileNameNew = preg_replace('/\s+/', '_', $fileNameNew); //replace all space with "_"
+                              $fileDestination = "assets/img/products/" . $fileNameNew;
+                              move_uploaded_file($fileTmpName, $fileDestination);
+                              $sql = "SELECT * from products where id=$id_product";
+                              $res = mysqli_query($conn, $sql);
+                              $re = mysqli_fetch_row($res);
+                              var_dump($re);
+                              die();
+                              unlink('assets/img/products/' . $re[7]);
+                              $sql = "UPDATE `products` SET
+                               `model`=?,
+                               `description`=?,
+                               `brands_id`=?,
+                               `categories_id`=?,
+                               `quantity`=?,
+                               `price`=?,
+                               `picture`=?,
+                               `updated_at`=?,
+                               `updated_by`=? 
+                              WHERE 
+                              `id`=?";
+
+                              $id = $_SESSION['id'];
+                              $time = date("Y-m-d H:i:s");
+                              $statement = mysqli_prepare($conn, $sql);
+                              mysqli_stmt_bind_param($statement, 'ssiiiissii', $model, $description, $brand, $category, $quantity, $price, $fileNameNew, $time, $id, $id_product);
+
+                              $res = mysqli_stmt_execute($statement);
+
+                              if ($res) {
+                                    $_SESSION['type_message'] = "success";
+                                    $_SESSION['message'] = "Account are created with success";
+                              } else {
+                                    $_SESSION['type_message'] = "error";
+                                    $_SESSION['message'] = "Error in creation ! try again later";
+                              }
+
+                              // /////////////////////////////////////////////////////////
+
+
+                        } else {
+                              $_SESSION['message'] = "Le fichier est trop grand";
+                        }
+                  } else {
+                        $_SESSION['message'] = "Erreur de téléchargement de fichier";
+                  }
+            } else {
+                  $_SESSION['message'] = "Erreur";
+            }
+      } else {
+            $sql = "UPDATE `products` SET
+            `model`=?,
+            `description`=?,
+            `brands_id`=?,
+            `categories_id`=?,
+            `quantity`=?,
+            `price`=?,
+            `updated_at`=?,
+            `updated_by`=? 
+           WHERE 
+           `id`=?";
+
+            $id = $_SESSION['id'];
+            $time = date("Y-m-d H:i:s");
+            $statement = mysqli_prepare($conn, $sql);
+            $a = mysqli_stmt_bind_param($statement, 'ssiiiisii', $model, $description, $brand, $category, $quantity, $price,  $time, $id, $id_product);
+            // var_dump($_POST);
+            // die();
+            $res = mysqli_stmt_execute($statement);
+            if ($res) {
+                  $_SESSION['type_message'] = "success";
+                  $_SESSION['message'] = "Account are created with success";
+            } else {
+                  $_SESSION['type_message'] = "error";
+                  $_SESSION['message'] = "Error in creation ! try again later";
+            }
+      }
+      header('location: products.php');
+      die();
+}
+function deleteProduct()
+{
+      extract($_POST);
+      global $conn;
+      $sql = "SELECT * from products where id=$id_product";
+      $res = mysqli_query($conn, $sql);
+      $re = mysqli_fetch_row($res);
+      unlink('assets/img/products/' . $re[7]);
+      $sql = "DELETE FROM `products`
+           WHERE 
+           `id`=?";
       $statement = mysqli_prepare($conn, $sql);
-      mysqli_stmt_bind_param($statement, 'sssss', $first_name, $last_name, $email, $password, date("Y-m-d H:i:s"));
-      $res = mysqli_stmt_execute($statement);
+      mysqli_stmt_bind_param($statement, 'i', $id_product);
 
+      $res = mysqli_stmt_execute($statement);
       if ($res) {
             $_SESSION['type_message'] = "success";
             $_SESSION['message'] = "Account are created with success";
@@ -115,5 +279,6 @@ function addProduct()
             $_SESSION['type_message'] = "error";
             $_SESSION['message'] = "Error in creation ! try again later";
       }
-      header('location: signup.php');
+      header('location: products.php');
+      die();
 }

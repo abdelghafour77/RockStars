@@ -113,10 +113,39 @@ if (document.getElementById('dropdown-card')) {
   });
 }
 function openModal() {
+  document.getElementById("type").setAttribute("name", 'add');
+  $("#update").removeClass("bloc").addClass("hidden");
+  $("#delete").removeClass("bloc").addClass("hidden");
+  $("#add").removeClass("hidden").addClass("bloc");
 
   $("#modal").removeClass("hidden").addClass("flex");
 }
 function closeModal() {
 
   $("#modal").removeClass("flex").addClass("hidden");
+}
+function setType(type) {
+  document.getElementById("type").setAttribute("name", type)
+}
+
+function getProduct(id) {
+  let product = $('#' + id);
+  let picture = product.find(".picture").attr("product");
+  $(".picture>img").remove();
+  var img = $('<img>'); //Equivalent: $(document.createElement('img'))
+  img.attr('src', 'assets/img/products/' + picture);
+  img.appendTo('.picture');
+
+  $('#id_product').val(id);
+  $('#model').val(product.find(".model").attr("product"));
+  $('#brand').val(product.find(".brand").attr("product"));
+  $('#category').val(product.find(".category").attr("product"));
+  $('#price').val(product.find(".price").attr("product"));
+  $('#quantity').val(product.find(".quantity").attr("product"));
+  $('#description').val(product.find(".description").attr("product"));
+
+  $("#update").removeClass("hidden").addClass("bloc");
+  $("#delete").removeClass("hidden").addClass("bloc");
+  $("#add").removeClass("bloc").addClass("hidden");
+  $("#modal").removeClass("hidden").addClass("flex");
 }

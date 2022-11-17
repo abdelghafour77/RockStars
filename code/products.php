@@ -1,5 +1,8 @@
 <?php
-session_start();
+include 'scripts.php';
+$categories = getAllCategories();
+$brands = getAllBrands();
+$products = getAllProducts();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,70 +109,8 @@ session_start();
             Add products
           </button>
         </div>
-        <!-- Modal -->
-        <div id="modal" class="h-screen w-full hidden fixed left-0 top-0 justify-center items-center bg-black bg-opacity-50">
-          <div class="bg-white rounded shadow-lg md:w-1/3 md:mx-0 w-full mx-2">
-            <form action="scripts.php" method="post">
-              <input type="hidden" id="type" name="add_product">
-              <div class="border-b px-4 py-2">
-                <h3>Add Product</h3>
-              </div>
-              <div class="p-2">
-                <div class="flex justify-center">
-                  <div class="mb-1 xl:w-96">
-                    <div class="mb-2">
-                      <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Model</label>
-                      <input type="text" id="model" name="model" placeholder="Model" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
-                    </div>
-                    <div class="mb-2 flex">
-                      <div class="mr-2 w-1/2">
-                        <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Model</label>
-                        <select name="brand" id="brand" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-                          <option value="1">yamaha</option>
-                        </select>
-                      </div>
-                      <div class="ml-2 w-1/2">
-                        <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Category</label>
-                        <select name="category" id="category" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-                          <option value="1">Strings</option>
-                        </select>
-                      </div>
-                    </div>
 
-                    <div class="mb-2 flex">
-                      <div class="mr-2 w-1/2">
-                        <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Quantity</label>
-                        <input type="number" id="quantity" name="quantity" placeholder="Quantity" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
-                      </div>
-                      <div class="ml-2 w-1/2">
-                        <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Price</label>
-                        <input type="number" id="price" name="price" placeholder="Price" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
-                      </div>
-                    </div>
 
-                    <div class="mb-2">
-                      <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Description</label>
-                      <textarea name="description" id="" cols="30" rows="3" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"> </textarea>
-                    </div>
-                    <div class="mb-1">
-                      <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Picture</label>
-                      <input class="form-control cursor-pointer block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-describedby="file_input_help" id="file_input" type="file" />
-                      <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="flex justify-end items-center w-100 border-t p-2">
-                <button type="button" onclick="closeModal()" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1">cancel</button>
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white">save</button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Modal -->
-
-        <!-- Modal -->
         <div class="flex flex-col mt-6">
           <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -183,36 +124,34 @@ session_start();
                       </th>
                       <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">quantity</th>
                       <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">price</th>
-                      <th scope="col" class="relative px-6 py-3">
-                        <span class="sr-only">Edit</span>
-                      </th>
                     </tr>
                   </thead>
+
                   <tbody class="bg-white divide-y divide-gray-200">
-                    <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                          <div class="flex-shrink-0 w-10 h-10">
-                            <img class="w-10 h-10 rounded-full" src="assets/img/users/404-1662642451.jfif" alt="" />
+                    <?php
+                    foreach ($products as  $product) { ?>
+                      <tr class="transition-all hover:bg-gray-100 hover:shadow-lg" onclick="getProduct(<?= $product['id'] ?>)" id="<?= $product['id'] ?>">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                            <div class="flex-shrink-0 w-12 h-12">
+                              <img class="picture w-12 h-12 rounded-md" product="<?= $product['picture'] ?>" src="assets/img/products/<?= $product['picture'] ?>" alt="" />
+                            </div>
+                            <div class="ml-4">
+                              <div class="model text-sm font-medium text-gray-900" product="<?= $product['model'] ?>"><?= $product['model'] ?></div>
+                              <div class="category text-sm text-gray-500" product="<?= $product['categories_id'] ?>"><?= $product['category'] ?> - <?= $product['brand'] ?></div>
+                            </div>
                           </div>
-                          <div class="ml-4">
-                            <div class="text-sm font-medium text-gray-900">model</div>
-                            <div class="text-sm text-gray-500">brands</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">description</div>
-                        <!-- <div class="text-sm text-gray-500">Optimization</div> -->
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"> 923 </span>
-                      </td>
-                      <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">$12.15</td>
-                      <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                      </td>
-                    </tr>
+                        </td>
+                        <td class="brand px-6 py-4 whitespace-nowrap" product="<?= $product['brands_id'] ?>">
+                          <p class="description text-sm truncate max-w-sm text-gray-900" product="<?= $product['description'] ?>"><?= $product['description'] ?></p>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="quantity inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full" product="<?= $product['quantity'] ?>"> <?= $product['quantity'] ?> </span>
+                        </td>
+                        <td class="price px-6 py-4 text-sm text-gray-500 whitespace-nowrap" product="<?= $product['price'] ?>">$<?= $product['price'] ?></td>
+                      </tr>
+                    <?php } ?>
+
                   </tbody>
                 </table>
               </div>
@@ -228,8 +167,90 @@ session_start();
       </footer>
     </div>
   </div>
+  <!-- Modal -->
+  <div id="modal" class="z-20 h-screen w-full hidden fixed left-0 top-0 justify-center items-center bg-black bg-opacity-50">
+    <div class="bg-white rounded shadow-lg md:w-3/4 md:mx-0 w-full mx-2">
+      <form action="scripts.php" method="POST" enctype="multipart/form-data">
+        <input type="hidden" id="id_product" name="id_product">
+        <input type="hidden" id="type" name="">
+        <div class="border-b px-4 py-2">
+          <h3>Add Product</h3>
+        </div>
+        <div class="p-2">
+          <div class="flex justify-center">
+
+            <!-- xl:w-96 -->
+            <div class="mb-1">
+              <div class="picture rounded-sm w-16 mx-auto">
+
+              </div>
+              <div class="mb-2">
+                <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Model</label>
+                <input type="text" id="model" name="model" placeholder="Model" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+              </div>
+              <div class="mb-2 flex">
+                <div class="mr-2 w-1/2">
+                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Brand</label>
+                  <select name="brand" id="brand" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+                    <option value="" disabled selected>Select Brand</option>
+                    <?php
+                    foreach ($brands as $brand) {
+                    ?>
+                      <option value="<?= $brand['id'] ?>"><?= $brand['name'] ?></option>
+                    <?php
+                    } ?>
+                  </select>
+                </div>
+                <div class="ml-2 w-1/2">
+                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Category</label>
+                  <select name="category" id="category" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+                    <option value="" disabled selected>Select Category</option>
+                    <?php
+                    foreach ($categories as $category) {
+                    ?>
+                      <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                    <?php
+                    } ?>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-2 flex">
+                <div class="mr-2 w-1/2">
+                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Quantity</label>
+                  <input type="number" id="quantity" name="quantity" placeholder="Quantity" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                </div>
+                <div class="ml-2 w-1/2">
+                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Price</label>
+                  <input type="number" id="price" name="price" placeholder="Price" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                </div>
+              </div>
+
+              <div class="mb-2">
+                <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Description</label>
+                <textarea name="description" id="description" cols="30" rows="3" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"> </textarea>
+              </div>
+              <div class="mb-1">
+                <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Picture</label>
+                <input id="picture" name="picture" type="file" class="form-control cursor-pointer block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-describedby="file_input_help" />
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-end items-center w-100 border-t p-2">
+          <button type="button" id="cancel" onclick="closeModal()" class="bg-gray-600 hover:bg-gray-700 px-3 py-1 rounded text-white mr-1">cancel</button>
+          <button type="submit" id="add" onclick="setType('add')" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1">save</button>
+          <button type="submit" id="update" onclick="setType('update')" class="bg-orange-500 hover:bg-orange-600 px-3 py-1 rounded text-white mr-1">update</button>
+          <button type="submit" id="delete" onclick="setType('delete')" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Modal -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="assets/js/sweetalert.js"></script>
   <script src="assets/js/main.js"></script>
   <?php
   include 'include/alert.php';

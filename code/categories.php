@@ -1,5 +1,7 @@
 <?php
-session_start();
+include 'scripts.php';
+$categories = getAllCategories();
+$countCategories = countCategories();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +17,7 @@ session_start();
   <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet" />
   <!-- Style CSS -->
   <link rel="stylesheet" href="assets/css/main.css" />
-  <title>Dashboard - RockStars</title>
+  <title>Dashboard categories - RockStars</title>
 </head>
 
 <body class="font-Poppins">
@@ -23,7 +25,7 @@ session_start();
     <!-- Sidebar -->
     <aside class="inset-y-0 z-10 flex flex-col flex-shrink-0 w-fit max-h-screen overflow-hidden transition-all transform bg-white border-r shadow-lg lg:z-auto lg:static lg:shadow-none">
       <!-- sidebar header -->
-      <div class="flex items-center justify-between flex-shrink-0 p-2 lg:justify-center">
+      <div class="flex items-center justify-center flex-shrink-0 p-2">
         <a href="index.php" class="pt-2">
           <div class="font-RockStars font-semibold text-sm ms:text-xl md:text-xl">
             <span class="text-gold">RS</span>
@@ -96,28 +98,18 @@ session_start();
       <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
         <!-- Main content header -->
         <div class="flex flex-col items-start justify-between pb-6 space-y-4 border-b lg:items-center lg:space-y-0 lg:flex-row">
-          <h1 class="text-2xl font-semibold whitespace-nowrap">Dashboard</h1>
-        </div>
-
-        <!-- Start Content -->
-        <div class="grid grid-cols-1 gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
-            <div class="flex items-start justify-between">
-              <div class="flex flex-col space-y-2">
-                <span class="text-gray-400">Total Products</span>
-                <span class="text-lg font-semibold">50</span>
-              </div>
-              <div class="p-10 bg-gray-200 rounded-md"></div>
-            </div>
-            <div>
-              <span class="inline-block px-2 text-sm text-white bg-green-300 rounded">14%</span>
-              <span>From last month</span>
-            </div>
-          </div>
+          <h1 class="text-2xl font-semibold whitespace-nowrap">Manage Categories</h1>
         </div>
 
         <!-- Table see (https://tailwindui.com/components/application-ui/lists/tables) -->
-        <h3 class="mt-6 text-xl">Users</h3>
+        <div class="flex mt-6 items-center justify-between">
+          <h3 class="text-xl">All Categories (<?= $countCategories ?>)</h3>
+          <button onclick="openModal()" type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+            Add Category
+          </button>
+        </div>
+
+
         <div class="flex flex-col mt-6">
           <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -125,43 +117,34 @@ session_start();
                 <table class="min-w-full overflow-x-scroll divide-y divide-gray-200">
                   <thead class="bg-gray-50">
                     <tr>
+                      <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Picture</th>
                       <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Name</th>
-                      <!-- <th scope="col"
-                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                        Title
-                      </th> -->
-                      <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status</th>
-                      <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Role</th>
-                      <th scope="col" class="relative px-6 py-3">
-                        <span class="sr-only">Edit</span>
-                      </th>
+                      <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Description</th>
+                      <!-- <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">price</th> -->
                     </tr>
                   </thead>
+
                   <tbody class="bg-white divide-y divide-gray-200">
-                    <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                          <div class="flex-shrink-0 w-10 h-10">
-                            <img class="w-10 h-10 rounded-full" src="assets/img/users/404-1662642451.jfif" alt="" />
+                    <?php
+                    foreach ($categories as  $category) { ?>
+                      <tr class="transition-all hover:bg-gray-100 hover:shadow-lg" onclick="getBrand(<?= $category['id'] ?>)" id="<?= $category['id'] ?>">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                            <div class="flex-shrink-0 md:w-24 w-14">
+                              <img class="picture" category="<?= $category['picture'] ?>" src="assets/img/categories/<?= $category['picture'] ?>" alt="" />
+                            </div>
+                            <!--  -->
                           </div>
-                          <div class="ml-4">
-                            <div class="text-sm font-medium text-gray-900">Abdelghafour AOUAD</div>
-                            <div class="text-sm text-gray-500">a.aouad@student.youcode.ma</div>
-                          </div>
-                        </div>
-                      </td>
-                      <!-- <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
-                        <div class="text-sm text-gray-500">Optimization</div>
-                      </td> -->
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"> Active </span>
-                      </td>
-                      <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">Admin</td>
-                      <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                      </td>
-                    </tr>
+                        </td>
+                        <td class="category px-6 py-4 whitespace-nowrap">
+                          <p class="name text-sm truncate max-w-sm text-gray-900" category="<?= $category['name'] ?>"><?= $category['name'] ?></p>
+                        </td>
+                        <td class="category px-6 py-4 whitespace-nowrap">
+                          <p class="description text-sm truncate max-w-sm text-gray-900" category="<?= $category['description'] ?>"><?= $category['description'] ?></p>
+                        </td>
+                      </tr>
+                    <?php } ?>
+
                   </tbody>
                 </table>
               </div>
@@ -177,7 +160,90 @@ session_start();
       </footer>
     </div>
   </div>
+  <!-- Modal -->
+  <div id="modal" class="z-20 h-screen w-full hidden fixed left-0 top-0 justify-center items-center bg-black bg-opacity-50">
+    <div class="bg-white rounded shadow-lg md:w-3/4 md:mx-0 w-full mx-2">
+      <form action="scripts.php" method="POST" enctype="multipart/form-data">
+        <input type="hidden" id="id_product" name="id_product">
+        <input type="hidden" id="type" name="">
+        <div class="border-b px-4 py-2">
+          <h3>Add Product</h3>
+        </div>
+        <div class="p-2">
+          <div class="flex justify-center">
+
+            <!-- xl:w-96 -->
+            <div class="mb-1">
+              <div class="picture rounded-sm w-16 mx-auto">
+
+              </div>
+              <div class="mb-2">
+                <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Model</label>
+                <input type="text" id="model" name="model" placeholder="Model" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+              </div>
+              <div class="mb-2 flex">
+                <div class="mr-2 w-1/2">
+                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Brand</label>
+                  <select name="brand" id="brand" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+                    <option value="" disabled selected>Select Brand</option>
+                    <?php
+                    foreach ($brands as $brand) {
+                    ?>
+                      <option value="<?= $brand['id'] ?>"><?= $brand['name'] ?></option>
+                    <?php
+                    } ?>
+                  </select>
+                </div>
+                <div class="ml-2 w-1/2">
+                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Category</label>
+                  <select name="category" id="category" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+                    <option value="" disabled selected>Select Category</option>
+                    <?php
+                    foreach ($categories as $category) {
+                    ?>
+                      <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                    <?php
+                    } ?>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-2 flex">
+                <div class="mr-2 w-1/2">
+                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Quantity</label>
+                  <input type="number" id="quantity" name="quantity" placeholder="Quantity" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                </div>
+                <div class="ml-2 w-1/2">
+                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Price</label>
+                  <input type="number" id="price" name="price" placeholder="Price" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                </div>
+              </div>
+
+              <div class="mb-2">
+                <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Description</label>
+                <textarea name="description" id="description" cols="30" rows="3" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"> </textarea>
+              </div>
+              <div class="mb-1">
+                <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Picture</label>
+                <input id="picture" name="picture" type="file" class="form-control cursor-pointer block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-describedby="file_input_help" />
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-end items-center w-100 border-t p-2">
+          <button type="button" id="cancel" onclick="closeModal()" class="bg-gray-600 hover:bg-gray-700 px-3 py-1 rounded text-white mr-1">cancel</button>
+          <button type="submit" id="add" onclick="setType('add')" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1">save</button>
+          <button type="submit" id="update" onclick="setType('update')" class="bg-orange-500 hover:bg-orange-600 px-3 py-1 rounded text-white mr-1">update</button>
+          <button type="submit" id="delete" onclick="setType('delete')" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Modal -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="assets/js/sweetalert.js"></script>
   <script src="assets/js/main.js"></script>
   <?php
   include 'include/alert.php';

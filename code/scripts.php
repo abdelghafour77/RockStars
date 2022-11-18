@@ -3,7 +3,7 @@ session_start();
 include_once 'connection.php';
 
 if (isset($_POST['register'])) register();
-if (isset($_POST['signup'])) signup();
+if (isset($_POST['signin'])) signin();
 if (isset($_POST['add'])) addProduct();
 if (isset($_POST['update'])) updateProduct();
 if (isset($_POST['delete'])) deleteProduct();
@@ -55,10 +55,10 @@ function register()
             $_SESSION['type_message'] = "error";
             $_SESSION['message'] = "Error in creation ! try again later";
       }
-      header('location: signup.php');
+      header('location: signin.php');
 }
 
-function signup()
+function signin()
 {
       extract($_POST);
       global $conn;
@@ -69,7 +69,7 @@ function signup()
       if (!isset($res["password"])) {
             $_SESSION['type_message'] = "error";
             $_SESSION['message'] = "Email incorrect";
-            header('location: signup.php');
+            header('location: signin.php');
             die();
       }
       $ress = password_verify($password, $res["password"]);
@@ -86,7 +86,7 @@ function signup()
       } else {
             $_SESSION['type_message'] = "error";
             $_SESSION['message'] = "Password incorrect";
-            header('location: signup.php');
+            header('location: signin.php');
             die();
       }
 }
@@ -213,10 +213,6 @@ function updateProduct()
                                     $_SESSION['type_message'] = "error";
                                     $_SESSION['message'] = "Error in creation ! try again later";
                               }
-
-                              // /////////////////////////////////////////////////////////
-
-
                         } else {
                               $_SESSION['message'] = "Le fichier est trop grand";
                         }
@@ -281,4 +277,62 @@ function deleteProduct()
       }
       header('location: products.php');
       die();
+}
+function countProducts()
+{
+
+      global $conn;
+      $sql = "SELECT count(id) FROM products ";
+      $res = mysqli_fetch_assoc(mysqli_query($conn, $sql))['count(id)'];
+
+      return $res;
+}
+function countBrands()
+{
+
+      global $conn;
+      $sql = "SELECT count(id) FROM brands ";
+      $res = mysqli_fetch_assoc(mysqli_query($conn, $sql))['count(id)'];
+
+      return $res;
+}
+function countCategories()
+{
+
+      global $conn;
+      $sql = "SELECT count(id) FROM categories ";
+      $res = mysqli_fetch_assoc(mysqli_query($conn, $sql))['count(id)'];
+
+      return $res;
+}
+function countUsers()
+{
+
+      global $conn;
+      $sql = "SELECT count(id) FROM users ";
+      $res = mysqli_fetch_assoc(mysqli_query($conn, $sql))['count(id)'];
+
+      return $res;
+}
+function getCategory($id)
+{
+
+      global $conn;
+      $sql = "SELECT * FROM categories where id = $id ";
+
+      $res = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+      // var_dump($res);
+      // die();
+      return $res;
+}
+function getProducts($id)
+{
+
+      global $conn;
+      $sql = "SELECT products.* , brands.name as brand FROM products  inner join (brands) on products.brands_id=brands.id  where categories_id = $id";
+
+      $res = mysqli_query($conn, $sql);
+      // var_dump($res);
+      // die();
+      return $res;
 }

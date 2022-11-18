@@ -4,7 +4,7 @@
 
 #background-img {
   background-image: url('../img/hero-bg.png');
-  height: 50%;
+  /* height: 50%; */
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;

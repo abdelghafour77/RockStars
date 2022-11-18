@@ -81,7 +81,7 @@ $categories = getAllCategories();
 
       <?php
       foreach ($categories as  $category) { ?>
-        <div class="flex justify-center">
+        <a href="category.php?id=<?= $category['id'] ?>" class="flex justify-center">
           <div class="overflow-hidden aspect-video cursor-pointer rounded-xl relative group h-60">
             <div class="rounded-xl z-50 sm:opacity-0 opacity-100 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 pt-30 text-white flex items-end">
               <div>
@@ -92,7 +92,7 @@ $categories = getAllCategories();
             </div>
             <img src="assets/img/categories/<?= $category['picture'] ?>" alt="<?= $category['name'] ?>" class="object-cover w-full aspect-square group-hover:scale-110 transition duration-300 ease-in-out" />
           </div>
-        </div>
+        </a>
       <?php
       }
       ?>

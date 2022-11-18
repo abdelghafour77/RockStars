@@ -3,6 +3,7 @@ include 'scripts.php';
 $categories = getAllCategories();
 $brands = getAllBrands();
 $products = getAllProducts();
+$countProducts = countProducts();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +19,7 @@ $products = getAllProducts();
   <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet" />
   <!-- Style CSS -->
   <link rel="stylesheet" href="assets/css/main.css" />
-  <title>Dashboard - RockStars</title>
+  <title>Dashboard products - RockStars</title>
 </head>
 
 <body class="font-Poppins">
@@ -26,7 +27,7 @@ $products = getAllProducts();
     <!-- Sidebar -->
     <aside class="inset-y-0 z-10 flex flex-col flex-shrink-0 w-fit max-h-screen overflow-hidden transition-all transform bg-white border-r shadow-lg lg:z-auto lg:static lg:shadow-none">
       <!-- sidebar header -->
-      <div class="flex items-center justify-between flex-shrink-0 p-2 lg:justify-center">
+      <div class="flex items-center justify-center flex-shrink-0 p-2">
         <a href="index.php" class="pt-2">
           <div class="font-RockStars font-semibold text-sm ms:text-xl md:text-xl">
             <span class="text-gold">RS</span>
@@ -103,10 +104,10 @@ $products = getAllProducts();
         </div>
 
         <!-- Table see (https://tailwindui.com/components/application-ui/lists/tables) -->
-        <div class="flex items-center justify-between">
-          <h3 class="mt-6 text-xl">All Products</h3>
+        <div class="flex mt-6 items-center justify-between">
+          <h3 class="text-xl">All Products (<?= $countProducts ?>)</h3>
           <button onclick="openModal()" type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-            Add products
+            Add product
           </button>
         </div>
 

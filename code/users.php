@@ -1,3 +1,8 @@
+<?php
+require_once 'scripts.php';
+$users = getAllUsers();
+$countUsers = countUsers();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet" />
   <!-- Style CSS -->
   <link rel="stylesheet" href="assets/css/main.css" />
-  <title>Dashboard - RockStars</title>
+  <title>Dashboard Users - RockStars</title>
 </head>
 
 <body class="font-Poppins">
@@ -20,7 +25,7 @@
     <!-- Sidebar -->
     <aside class="inset-y-0 z-10 flex flex-col flex-shrink-0 w-fit max-h-screen overflow-hidden transition-all transform bg-white border-r shadow-lg lg:z-auto lg:static lg:shadow-none">
       <!-- sidebar header -->
-      <div class="flex items-center justify-between flex-shrink-0 p-2 lg:justify-center">
+      <div class="flex items-center justify-center flex-shrink-0 p-2">
         <a href="index.php" class="pt-2">
           <div class="font-RockStars font-semibold text-sm ms:text-xl md:text-xl">
             <span class="text-gold">RS</span>
@@ -88,61 +93,16 @@
 
     <div class="flex flex-col flex-1 h-full overflow-hidden">
       <!-- Navbar -->
-      <header class="flex-shrink-0 border-b">
-        <div class="flex items-center justify-end p-2">
-          <!-- Navbar right -->
-          <div class="relative flex items-center space-x-3">
-            <!-- avatar button -->
-            <div class="relative">
-              <button id="dropdown" class="p-1 bg-gray-200 rounded-full focus:outline-none focus:ring">
-                <img class="object-cover w-8 h-8 rounded-full" src="assets/img/users/404-1662642451.jfif" alt="Abdelghafour aouad" />
-              </button>
-
-              <!-- Dropdown card -->
-              <div id="dropdown-card" class="hidden absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max">
-                <div class="flex flex-col p-4 space-y-1 font-medium border-b">
-                  <span class="text-gray-800">abdelghafour AOUAD</span>
-                  <span class="text-sm text-gray-400">a.aouad@student.youcode.ma</span>
-                </div>
-                <ul class="flex flex-col p-2 my-2 space-y-1">
-                  <li>
-                    <a href="editProfil.php" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Edit profil</a>
-                  </li>
-                </ul>
-                <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
-                  <a href="#">Logout</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <?php include 'include/header-dashboard.php'; ?>
       <!-- Main content -->
       <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
         <!-- Main content header -->
         <div class="flex flex-col items-start justify-between pb-6 space-y-4 border-b lg:items-center lg:space-y-0 lg:flex-row">
-          <h1 class="text-2xl font-semibold whitespace-nowrap">Dashboard</h1>
-        </div>
-
-        <!-- Start Content -->
-        <div class="grid grid-cols-1 gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
-            <div class="flex items-start justify-between">
-              <div class="flex flex-col space-y-2">
-                <span class="text-gray-400">Total Products</span>
-                <span class="text-lg font-semibold">50</span>
-              </div>
-              <div class="p-10 bg-gray-200 rounded-md"></div>
-            </div>
-            <div>
-              <span class="inline-block px-2 text-sm text-white bg-green-300 rounded">14%</span>
-              <span>From last month</span>
-            </div>
-          </div>
+          <h1 class="text-2xl font-semibold whitespace-nowrap">Manage Users</h1>
         </div>
 
         <!-- Table see (https://tailwindui.com/components/application-ui/lists/tables) -->
-        <h3 class="mt-6 text-xl">Users</h3>
+        <h3 class="mt-6 text-xl">All Users (<?= $countUsers ?>)</h3>
         <div class="flex flex-col mt-6">
           <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -163,30 +123,34 @@
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
-                    <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                          <div class="flex-shrink-0 w-10 h-10">
-                            <img class="w-10 h-10 rounded-full" src="assets/img/users/404-1662642451.jfif" alt="" />
+                    <?php
+                    foreach ($users as $user) {
+
+                    ?>
+                      <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                            <div class="flex-shrink-0 w-10 h-10">
+                              <img class="w-10 h-10 rounded-full" src="assets/img/users/<?php echo ($user['picture']) ?  $user['picture'] :  'avatar.png' ?>" alt="<?= $user['first_name'] . '_' . $user['last_name'] ?>" />
+                            </div>
+                            <div class="ml-4">
+                              <div class="text-sm font-medium text-gray-900"><?= $user['first_name'] . ' ' . $user['last_name'] ?></div>
+                              <div class="text-sm text-gray-500"><?= $user['email'] ?></div>
+                            </div>
                           </div>
-                          <div class="ml-4">
-                            <div class="text-sm font-medium text-gray-900">Abdelghafour AOUAD</div>
-                            <div class="text-sm text-gray-500">a.aouad@student.youcode.ma</div>
-                          </div>
-                        </div>
-                      </td>
-                      <!-- <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
-                        <div class="text-sm text-gray-500">Optimization</div>
-                      </td> -->
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"> Active </span>
-                      </td>
-                      <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">Admin</td>
-                      <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                      </td>
-                    </tr>
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"> Active </span>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">Admin</td>
+                        <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                          <a href="edit.php?id_user=<?= $user['id'] ?>" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                        </td>
+                      </tr>
+                    <?php
+                    }
+                    ?>
                   </tbody>
                 </table>
               </div>
@@ -204,6 +168,7 @@
   </div>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/sweetalert.js"></script>
   <?php
   include 'include/alert.php';
   ?>

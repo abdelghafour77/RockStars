@@ -1,6 +1,10 @@
 <?php
 require_once 'scripts.php';
 $users = getAllUsers();
+$countProducts = countProducts();
+$countUsers = countUsers();
+$countCategories = countCategories();
+$countBrands = countBrands();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +28,7 @@ $users = getAllUsers();
     <!-- Sidebar -->
     <aside class="inset-y-0 z-10 flex flex-col flex-shrink-0 w-fit max-h-screen overflow-hidden transition-all transform bg-white border-r shadow-lg lg:z-auto lg:static lg:shadow-none">
       <!-- sidebar header -->
-      <div class="flex items-center justify-between flex-shrink-0 p-2 lg:justify-center">
+      <div class="flex items-center justify-center flex-shrink-0 p-2">
         <a href="index.php" class="pt-2">
           <div class="font-RockStars font-semibold text-sm ms:text-xl md:text-xl">
             <span class="text-gold">RS</span>
@@ -102,19 +106,55 @@ $users = getAllUsers();
 
         <!-- Start Content -->
         <div class="grid grid-cols-1 gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-4">
+
           <div class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
             <div class="flex items-start justify-between">
               <div class="flex flex-col space-y-2">
                 <span class="text-gray-400">Total Products</span>
-                <span class="text-lg font-semibold">50</span>
+                <span class="text-lg font-semibold"><?= $countProducts ?></span>
               </div>
-              <div class="p-10 bg-gray-200 rounded-md"></div>
-            </div>
-            <div>
-              <span class="inline-block px-2 text-sm text-white bg-green-300 rounded">14%</span>
-              <span>From last month</span>
+              <div class="h-24 w-24 flex justify-center bg-gray-100 rounded-md">
+                <img class="w-20 my-auto" src="assets/img/product.png" alt="">
+              </div>
             </div>
           </div>
+
+          <div class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col space-y-2">
+                <span class="text-gray-400">Total Categories</span>
+                <span class="text-lg font-semibold"><?= $countCategories ?></span>
+              </div>
+              <div class="h-24 w-24 flex justify-center bg-gray-100 rounded-md">
+                <img class="w-20 my-auto" src="assets/img/categories.png" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col space-y-2">
+                <span class="text-gray-400">Total Users</span>
+                <span class="text-lg font-semibold"><?= $countUsers ?></span>
+              </div>
+              <div class="h-24 w-24 flex justify-center bg-gray-100 rounded-md">
+                <img class="w-20 my-auto" src="assets/img/users.png" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col space-y-2">
+                <span class="text-gray-400">Total Brands</span>
+                <span class="text-lg font-semibold"><?= $countBrands ?></span>
+              </div>
+              <div class="h-24 w-24 flex justify-center bg-gray-100 rounded-md">
+                <img class="w-20 my-auto" src="assets/img/brands.png" alt="">
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <!-- Table see (https://tailwindui.com/components/application-ui/lists/tables) -->

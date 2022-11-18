@@ -28,7 +28,7 @@
                                                 <a href="editProfil.php" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Edit profil</a>
                                           </li>
                                     </ul>
-                                    <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
+                                    <div class="flex items-center justify-center p-4 text-blue-700 border-t">
                                           <a href="logout.php">Logout</a>
                                     </div>
                               </div>
@@ -36,7 +36,7 @@
                   <?php
                   } else {
                   ?>
-                        <a href="signup.php" class="block px-3 py-1 p-1 md:p-2 md:px-6 md:py-2 text-gold border border-gold rounded-lg baseline hover:text-black hover:bg-lightGold hover:border-lightGold"> Sign Up </a>
+                        <a href="signin.php" class="block px-3 py-1 p-1 md:p-2 md:px-6 md:py-2 text-gold border border-gold rounded-lg baseline hover:text-black hover:bg-lightGold hover:border-lightGold"> sign in </a>
                         <a href="register.php" class="block px-3 py-1 p-1 md:p-2 md:px-6 md:py-2 bg-gold rounded-lg baseline text-white hover:bg-lightGold hover:text-black"> Register </a>
                   <?php
                   }

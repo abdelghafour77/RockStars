@@ -19,7 +19,7 @@
                                           <a href="editProfil.php" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Edit profil</a>
                                     </li>
                               </ul>
-                              <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
+                              <div class="flex items-center justify-center p-4 text-blue-700 border-t">
                                     <a href="logout.php">Logout</a>
                               </div>
                         </div>

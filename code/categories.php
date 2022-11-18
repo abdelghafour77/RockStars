@@ -1,5 +1,9 @@
 <?php
 include 'scripts.php';
+if (!isset($_SESSION['id'])) {
+  header('location: 404.php');
+  die();
+}
 $categories = getAllCategories();
 $countCategories = countCategories();
 ?>

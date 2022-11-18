@@ -1,5 +1,9 @@
 <?php
 require_once 'scripts.php';
+if (!isset($_SESSION['id'])) {
+  header('location: 404.php');
+  die();
+}
 $users = getAllUsers();
 $countProducts = countProducts();
 $countUsers = countUsers();

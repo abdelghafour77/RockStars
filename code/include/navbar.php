@@ -15,7 +15,7 @@
                                     </button>
                               </div>
                               <!-- Dropdown card -->
-                              <div id="dropdown-card" class="hidden absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max">
+                              <div id="dropdown-card" class=" z-20 hidden absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max">
                                     <div class="flex flex-col p-4 space-y-1 font-medium border-b">
                                           <span class="text-gray-800"><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></span>
                                           <span class="text-sm text-gray-400"><?= $_SESSION['email'] ?></span>
@@ -25,7 +25,7 @@
                                                 <a href="dashboard.php" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Dashboard</a>
                                           </li>
                                           <li>
-                                                <a href="editProfil.php" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Edit profil</a>
+                                                <a href="edit.php" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Edit profil</a>
                                           </li>
                                     </ul>
                                     <div class="flex items-center justify-center p-4 text-blue-700 border-t">

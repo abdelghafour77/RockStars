@@ -7,6 +7,7 @@ if (isset($_POST['signin'])) signin();
 if (isset($_POST['add'])) addProduct();
 if (isset($_POST['update'])) updateProduct();
 if (isset($_POST['delete'])) deleteProduct();
+if (isset($_POST['update_user'])) updateUser();
 
 function getAllBrands()
 {
@@ -134,7 +135,7 @@ function addProduct()
 
                               if ($res) {
                                     $_SESSION['type_message'] = "success";
-                                    $_SESSION['message'] = "Account are created with success";
+                                    $_SESSION['message'] = "Product are created with success";
                               } else {
                                     $_SESSION['type_message'] = "error";
                                     $_SESSION['message'] = "Error in creation ! try again later";
@@ -208,10 +209,10 @@ function updateProduct()
 
                               if ($res) {
                                     $_SESSION['type_message'] = "success";
-                                    $_SESSION['message'] = "Account are created with success";
+                                    $_SESSION['message'] = "Product are updated with success";
                               } else {
                                     $_SESSION['type_message'] = "error";
-                                    $_SESSION['message'] = "Error in creation ! try again later";
+                                    $_SESSION['message'] = "Error in update ! try again later";
                               }
                         } else {
                               $_SESSION['message'] = "Le fichier est trop grand";
@@ -244,10 +245,10 @@ function updateProduct()
             $res = mysqli_stmt_execute($statement);
             if ($res) {
                   $_SESSION['type_message'] = "success";
-                  $_SESSION['message'] = "Account are created with success";
+                  $_SESSION['message'] = "product are updated with success";
             } else {
                   $_SESSION['type_message'] = "error";
-                  $_SESSION['message'] = "Error in creation ! try again later";
+                  $_SESSION['message'] = "Error in update ! try again later";
             }
       }
       header('location: products.php');
@@ -321,8 +322,6 @@ function getCategory($id)
       $sql = "SELECT * FROM categories where id = $id ";
 
       $res = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-      // var_dump($res);
-      // die();
       return $res;
 }
 function getProducts($id)
@@ -332,7 +331,60 @@ function getProducts($id)
       $sql = "SELECT products.* , brands.name as brand FROM products  inner join (brands) on products.brands_id=brands.id  where categories_id = $id";
 
       $res = mysqli_query($conn, $sql);
+      return $res;
+}
+function getUser($id)
+{
+      global $conn;
+      $sql = "SELECT * FROM users where id = $id ";
+
+      $res = mysqli_fetch_assoc(mysqli_query($conn, $sql));
       // var_dump($res);
       // die();
       return $res;
+}
+function updateUser()
+{
+      extract($_POST);
+      global $conn;
+
+      $sql = "UPDATE `users` SET
+            `first_name`=?,
+            `last_name`=?,
+            `email`=?,
+            `phone`=?,
+            `updated_at`=?,
+            `updated_by`=? 
+           WHERE 
+           `id`=?";
+
+      $id_update = $_SESSION['id'];
+      $time = date("Y-m-d H:i:s");
+      $statement = mysqli_prepare($conn, $sql);
+      $a = mysqli_stmt_bind_param($statement, 'sssssss', $first_name, $last_name, $email, $phone, $time, $id_update, $id);
+      // var_dump($statement);
+      // die();
+      $res = mysqli_stmt_execute($statement);
+      if ($res) {
+            $_SESSION['type_message'] = "success";
+            $_SESSION['message'] = "Account are updated with success";
+      } else {
+            $_SESSION['type_message'] = "error";
+            $_SESSION['message'] = "Error in update ! try again later";
+      }
+      if ($id == $id_update) {
+
+            $sql = "SELECT *  FROM users WHERE id = '$id_update' ";
+            $res = mysqli_query($conn, $sql);
+            $res = mysqli_fetch_assoc($res);
+
+            $_SESSION['id'] = $res['id'];
+            $_SESSION['first_name'] = $res['first_name'];
+            $_SESSION['last_name'] = $res['last_name'];
+            $_SESSION['email'] = $res['email'];
+            $_SESSION['picture'] = $res['picture'];
+      }
+
+      header("location: edit.php?id_user=$id");
+      die();
 }

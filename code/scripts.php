@@ -361,8 +361,25 @@ function updateUser()
 {
       extract($_POST);
       global $conn;
+      if ($password != '') {
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $sql = "UPDATE `users` SET
+            `first_name`=?,
+            `last_name`=?,
+            `email`=?,
+            `phone`=?,
+            `password`=?,
+            `updated_at`=?,
+            `updated_by`=? 
+           WHERE 
+           `id`=?";
 
-      $sql = "UPDATE `users` SET
+            $id_update = $_SESSION['id'];
+            $time = date("Y-m-d H:i:s");
+            $statement = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($statement, 'ssssssss', $first_name, $last_name, $email, $phone, $password, $time, $id_update, $id);
+      } else {
+            $sql = "UPDATE `users` SET
             `first_name`=?,
             `last_name`=?,
             `email`=?,
@@ -372,10 +389,12 @@ function updateUser()
            WHERE 
            `id`=?";
 
-      $id_update = $_SESSION['id'];
-      $time = date("Y-m-d H:i:s");
-      $statement = mysqli_prepare($conn, $sql);
-      $a = mysqli_stmt_bind_param($statement, 'sssssss', $first_name, $last_name, $email, $phone, $time, $id_update, $id);
+            $id_update = $_SESSION['id'];
+            $time = date("Y-m-d H:i:s");
+            $statement = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($statement, 'sssssss', $first_name, $last_name, $email, $phone, $time, $id_update, $id);
+      }
+
       // var_dump($statement);
       // die();
       $res = mysqli_stmt_execute($statement);

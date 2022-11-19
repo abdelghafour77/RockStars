@@ -5,7 +5,7 @@
                   <!-- avatar button -->
                   <div class="relative">
                         <button id="dropdown" class="p-1 bg-gray-200 rounded-full focus:outline-none focus:ring">
-                              <img class="object-cover w-8 h-8 rounded-full" src="assets/img/users/<?php echo ($_SESSION['picture']) ?  $_SESSION['picture'] :  'avatar.png' ?>" alt="<?= $_SESSION['first_name'] . '_' . $_SESSION['last_name'] ?>" />
+                              <img class="object-cover w-8 h-8 rounded-full" src="assets/img/users/<?= ($_SESSION['picture']) ?  $_SESSION['picture'] :  'avatar.png' ?>" alt="<?= $_SESSION['first_name'] . '_' . $_SESSION['last_name'] ?>" />
                         </button>
 
                         <!-- Dropdown card -->

@@ -11,7 +11,7 @@
                               <div id="dropdown" class="flex items-center cursor-pointer">
                                     <div class="text-white mr-4 sm:block hidden"><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></div>
                                     <button class="p-1 bg-gray-200 rounded-full focus:outline-none focus:ring">
-                                          <img class="object-cover w-8 h-8 rounded-full" src="assets/img/users/<?php echo ($_SESSION['picture']) ?  $_SESSION['picture'] :  'avatar.png' ?>" alt="<?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>" />
+                                          <img class="object-cover w-8 h-8 rounded-full" src="assets/img/users/<?= ($_SESSION['picture']) ?  $_SESSION['picture'] :  'avatar.png' ?>" alt="<?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>" />
                                     </button>
                               </div>
                               <!-- Dropdown card -->

@@ -117,7 +117,7 @@ if (isset($_SESSION['id'])) {
           <div class=" p-2 bg-white rounded-xl transform transition-all shadow-lg">
             <div class="mb-2 text-center">
               <div class="w-24 h-24 flex items-center">
-                <img class="w-20 h-20 mx-auto rounded-r-full" src="assets/img/users/<?= $user['picture'] != null ? $user['picture'] : 'avatar.png' ?>" alt="">
+                <img class="w-20 h-20 mx-auto rounded-md bg-gray-200" src="assets/img/users/<?= $user['picture'] != null ? $user['picture'] : 'avatar.png' ?>" alt="">
               </div>
               <label for="exampleFormControlInput1" class="form-label text-center inline-block mb-2 text-gray-700">ID : <?= $user['id'] ?></label>
             </div>

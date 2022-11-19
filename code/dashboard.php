@@ -175,7 +175,7 @@ $countBrands = countBrands();
                         class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                         Title
                       </th> -->
-                      <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status</th>
+                      <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Phone</th>
                       <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Role</th>
                       <th scope="col" class="relative px-6 py-3">
                         <span class="sr-only">Edit</span>
@@ -191,7 +191,7 @@ $countBrands = countBrands();
                         <td class="px-6 py-4 whitespace-nowrap">
                           <div class="flex items-center">
                             <div class="flex-shrink-0 w-10 h-10">
-                              <img class="w-10 h-10 rounded-full" src="assets/img/users/<?php echo ($user['picture']) ?  $user['picture'] :  'avatar.png' ?>" alt="<?= $user['first_name'] . '_' . $user['last_name'] ?>" />
+                              <img class="w-10 h-10 rounded-full" src="assets/img/users/<?= ($user['picture']) ?  $user['picture'] :  'avatar.png' ?>" alt="<?= $user['first_name'] . '_' . $user['last_name'] ?>" />
                             </div>
                             <div class="ml-4">
                               <div class="text-sm font-medium text-gray-900"><?= $user['first_name'] . ' ' . $user['last_name'] ?></div>
@@ -201,9 +201,9 @@ $countBrands = countBrands();
                         </td>
 
                         <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"> Active </span>
+                          <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"> <?= ($user['phone']) ?  $user['phone'] :  'Null' ?> </span>
                         </td>
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">Admin</td>
+                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><?= $user['role'] ?></td>
                         <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                           <a href="edit.php?id_user=<?= $user['id'] ?>" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                         </td>

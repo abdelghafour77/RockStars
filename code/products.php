@@ -151,7 +151,7 @@ $countProducts = countProducts();
                           <p class="description text-sm truncate max-w-sm text-gray-900" product="<?= $product['description'] ?>"><?= $product['description'] ?></p>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="quantity inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full" product="<?= $product['quantity'] ?>"> <?= $product['quantity'] ?> </span>
+                          <span class="quantity inline-flex px-2 text-xs font-semibold leading-5 <?= $product['quantity'] <= 5 ? 'text-red-800 bg-red-100' : ' text-green-800 bg-green-100' ?> rounded-full" product="<?= $product['quantity'] ?>"> <?= $product['quantity'] ?> </span>
                         </td>
                         <td class="price px-6 py-4 text-sm text-gray-500 whitespace-nowrap" product="<?= $product['price'] ?>">$<?= $product['price'] ?></td>
                       </tr>

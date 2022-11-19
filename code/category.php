@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
   </div>
   <div class="bg-gray-100 py-10 w-full min-h-max gap-4 flex-wrap flex justify-center items-center">
     <?php
-    $count = 0;
+    $count = -1;
     foreach ($products as $count => $product) {
     ?>
       <!-- Card -->
@@ -43,7 +43,7 @@ if (isset($_GET['id'])) {
         <img class="h-40 mx-auto object-cover rounded-xl" src="assets/img/products/<?= $product['picture'] ?>" alt="<?= $product['model'] ?>">
         <div class="p-2">
           <!-- Heading -->
-          <h2 class="font-bold text-lg mb-2 "><?= $product['model'] ?></h2>
+          <h2 class="font-bold text-lg mb-2 truncate"><?= $product['model'] ?></h2>
           <h2 class="text-xs mb-2 "><?= $product['brand'] ?></h2>
           <!-- Description -->
           <p class="text-sm text-gray-600 truncate h-10"><?= $product['description'] ?></p>
@@ -56,7 +56,7 @@ if (isset($_GET['id'])) {
       </div>
     <?php
     }
-    if ($count == 0) {
+    if ($count == -1) {
       echo '<h2 class="font-bold">No data available now !</h2>';
     }
     ?>

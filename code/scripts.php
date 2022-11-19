@@ -2,12 +2,17 @@
 session_start();
 include_once 'connection.php';
 
-if (isset($_POST['register'])) register();
-if (isset($_POST['signin'])) signin();
-if (isset($_POST['add'])) addProduct();
-if (isset($_POST['update'])) updateProduct();
-if (isset($_POST['delete'])) deleteProduct();
-if (isset($_POST['update_user'])) updateUser();
+// var_dump($_SERVER);
+// var_dump($_REQUEST);
+// die;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      if (isset($_REQUEST['register'])) register();
+      if (isset($_REQUEST['signin'])) signIn();
+      if (isset($_REQUEST['add'])) addProduct();
+      if (isset($_REQUEST['update'])) updateProduct();
+      if (isset($_REQUEST['delete'])) deleteProduct();
+      if (isset($_REQUEST['update_user'])) updateUser();
+}
 
 function getAllBrands()
 {
@@ -59,11 +64,11 @@ function register()
       header('location: signin.php');
 }
 
-function signin()
+function signIn()
 {
       extract($_POST);
       global $conn;
-      $sql = "SELECT *  FROM users WHERE email = '$email' ";
+      $sql = "SELECT users.* , roles.name as role FROM users inner join roles on roles.id=users.role_id WHERE email = '$email' ";
       $res = mysqli_query($conn, $sql);
       $res = mysqli_fetch_assoc($res);
 
@@ -82,6 +87,14 @@ function signin()
             $_SESSION['last_name'] = $res['last_name'];
             $_SESSION['email'] = $res['email'];
             $_SESSION['picture'] = $res['picture'];
+            $_SESSION['role'] = $res['role'];
+            $_SESSION['role_id'] = $res['role_id'];
+            if (isset($remember_me)) {
+                  if ($remember_me == 'on') {
+                        setcookie('email', $email, time() + 3600 * 24 * 7);
+                        setcookie('password', $password, time() + 3600 * 24 * 7);
+                  }
+            }
             header('location: dashboard.php');
             die();
       } else {
@@ -96,7 +109,8 @@ function getAllUsers()
 {
 
       global $conn;
-      $sql = "SELECT id, first_name, last_name, email, picture  FROM users";
+      $sql = "SELECT users.id, users.first_name, users.last_name, users.email, users.picture , users.phone,
+      roles.name as role FROM users inner join roles on roles.id=users.role_id";
       $res = mysqli_query($conn, $sql);
       return $res;
 }

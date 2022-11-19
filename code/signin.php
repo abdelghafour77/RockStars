@@ -41,15 +41,19 @@ if (isset($_SESSION['id'])) {
             <label class="block text-gray-900 text-sm font-bold mb-2" for="email">
               Email
             </label>
-            <input name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email">
+            <input name="email" value="<?= (isset($_COOKIE['email'])) ? $_COOKIE['email'] : '' ?>" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email">
           </div>
           <div class="mb-4">
             <label class="block text-gray-900 text-sm font-bold mb-2" for="password">
               Password
             </label>
-            <input name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password">
+            <input name="password" value="<?= (isset($_COOKIE['password'])) ? $_COOKIE['password'] : '' ?>" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password">
           </div>
           <input type="hidden" name="signin">
+          <div class="flex items-center mb-4">
+            <input id="default-checkbox" checked type="checkbox" name="remember_me" class="w-4 h-4 accent-gold bg-gray-100 rounded border-gray-300 focus:ring-lightGold dark:focus:ring-gold dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="default-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">Remember Me</label>
+          </div>
           <div class="flex items-center justify-between">
             <a class="inline-block align-baseline font-bold text-sm text-gold hover:text-lightGold" href="#">
               Forgot Password?

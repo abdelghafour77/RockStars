@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 19 nov. 2022 à 15:47
+-- Généré le : sam. 19 nov. 2022 à 17:55
 -- Version du serveur : 8.0.27
 -- Version de PHP : 7.4.26
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `rockstars`
 --
-CREATE DATABASE IF NOT EXISTS `rockstars` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `rockstars`;
 
 -- --------------------------------------------------------
 
@@ -104,16 +102,24 @@ CREATE TABLE IF NOT EXISTS `products` (
   `created_by` int NOT NULL,
   `updated_by` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `products`
 --
 
 INSERT INTO `products` (`id`, `model`, `description`, `brands_id`, `categories_id`, `quantity`, `price`, `picture`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(5, 'test product', ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et fermentum dui. Ut orci quam, ornare sed lorem sed, hendrerit auctor dolor. Nulla viverra, nibh quis ultrices malesuada, ligula ipsum.', 1, 1, 78, 15004, '1811221668789795.png', '2022-11-18 15:43:15', '2022-11-18 15:43:15', 6, 6),
-(6, 'alo', ' jklm', 3, 1, 6, 3, '1811221668790170.png', '2022-11-18 15:49:30', '2022-11-19 11:46:16', 6, 6),
-(7, 'testo', ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et fermentum dui. Ut orci quam, ornare sed lorem sed, hendrerit auctor dolor.', 8, 4, 11, 5600, '1911221668864343.png', '2022-11-19 12:25:43', '2022-11-19 12:25:43', 7, 7);
+(8, 'CFX', ' Crafted for the world’s biggest stages. Pure sound flows effortlessly from artist to piano to audience, filling the world’s most prestigious concert halls.\r\n\r\n', 1, 1, 9, 4999, '1911221668874796.jpg', '2022-11-19 15:19:56', '2022-11-19 15:19:56', 7, 7),
+(9, 'CF6', ' The choice of mid-sized concert halls. Concert grand DNA, sound and resonance to make every performance bigger than the stage.', 1, 1, 5, 106900, '1911221668874881.jpg', '2022-11-19 15:21:21', '2022-11-19 15:21:21', 7, 7),
+(10, 'STAR Maple Drum Kits', ' STAR is the new flagship line for TAMA drums. It takes the knowledge and research we cultivated for the Starclassic series to the next level, by reexamining every detail to enhance shell resonance.\r\nSTAR Maple shell\'s \"Solid Core Ply\" is a totally new design for this series. This unique shell provides the warm, open tone of Maple, combined with the rich, hearty sound of a solid ply shell.', 2, 4, 14, 1000, '1911221668875067.png', '2022-11-19 15:24:27', '2022-11-19 15:24:27', 7, 7),
+(11, 'Cocktail-JAM Mini Kit', 'TAMA Cocktail-JAM Mini is a compact and easy-to-transport drum kit. Its drums are 2 inches smaller in diameter than the full-size Cocktail-JAM Kit. It is compact in size but very scalable, allowing you to add cymbals and cowbells by using our compact clamps and attachments. You can pack the entire kit and its hardware easily into just two bags, which are included with the kit. Also includes tom mounting arms and single bass drum pedal.', 2, 4, 21, 7600, '1911221668875171.png', '2022-11-19 15:26:11', '2022-11-19 15:26:11', 7, 7),
+(12, 'Superstar Classic Drum Kits', ' For more than forty years, the Superstar name has stood for groundbreaking design, superior build quality, sterling tone, and clear projection. Superstar Classic once again upholds tradition by raising the bar for discerning drummers—and remarkably—does it at an extremely competitive price. Drawing on Superstar of the past, its classic TAMA T-shape badge and streamlined low-mass single lugs point to the simpler state of art of the 70\'s, while the ingenious Star-Mount system and new thinner gauge 100% maple shells eclipse anything in its class. Visually ravishing, the Gloss Lacebark Pine exterior ply possesses a complex wood grain pattern to give this kit an extraordinary visual appearance.', 2, 4, 4, 9980, '1911221668875293.png', '2022-11-19 15:28:13', '2022-11-19 15:28:13', 7, 7),
+(13, 'Stage Custom Birch', ' As with the introduction of Stage Custom in 1995 YAMAHA once again sets the standards of value and sound. The new Stage Custom inherits 100% birch wood, with upgraded metal parts.', 1, 4, 6, 8600, '1911221668875562.png', '2022-11-19 15:32:42', '2022-11-19 15:32:42', 7, 7),
+(14, 'V10SG', ' The V10SG is a set including V10G, case (VHC2), bow, and rosin.\r\n\r\n', 1, 6, 13, 5300, '1911221668875672.jpg', '2022-11-19 15:34:32', '2022-11-19 15:34:32', 7, 7),
+(15, 'Les Paul Special', ' The Les Paul Special returns to the classic design that made it relevant, played and loved shaping sound across generations and genres of music. It pays tribute to Gibson\'s Golden Era of innovation and brings authenticity back to life. Originally introduced in 1955, the Les Paul Special has been embraced by musicians for over 60 years. It is based on the Les Paul Junior with a slab mahogany body, fat 50s-style mahogany neck, rosewood fingerboard, wraparound bridge, an additional rhythm P-90 pickup, binding on the neck and additional controls for the rhythm pickup and the 3-way toggle switch. Available in the always classic TV Yellow and Vintage Cherry.', 4, 3, 11, 1799, '1911221668875998.jpg', '2022-11-19 15:39:58', '2022-11-19 15:39:58', 7, 7),
+(16, 'Les Paul Standard \'50s P-90.', ' The new Les Paul Standard returns to the classic design that made it famous. It pays tribute to Gibson\'s Golden Era of innovation and brings authenticity back to life. The Les Paul Standard 50s P-90 has a solid mahogany body with a maple top and a rounded 50s-style mahogany neck with a rosewood fingerboard and trapezoid inlays. It\'s equipped with an ABR-1, the classic-style Tune-O-Matic™ bridge, an aluminum Stop Bar tailpiece, Vintage Deluxe tuners with Keystone buttons, and aged gold Top Hat knobs. The classic P-90 pickups (neck and bridge) are loaded with Alnico 5 magnets, audio taper potentiometers, and Orange Drop® capacitors.', 4, 3, 7, 2799, '1911221668876088.jpg', '2022-11-19 15:41:28', '2022-11-19 15:41:28', 7, 7),
+(17, 'SG Standard \'61', ' The SG Standard ‘61 returns to the classic design that made it relevant, played, and loved -- shaping sound across generations and genres of music. In 1961, the Les Paul™ model was put on hiatus and an all-new design evolved into what is today known as the SG™ or “solid guitar.” The Gibson SG Standard \'61 retains the styling of the original featuring a SlimTaper™ mahogany neck and a bound rosewood fingerboard. The mahogany body features deeply sculpted body scarfing, a 5-ply teardrop pickguard, and a 22nd-fret neck joint. The nickel-plated hardware includes a classic-style Tune-O-Matic™ bridge and Keystone tuners. The pickups are 60s Burstbucker™ humbuckers™ for a classic voice with added power and top end.  Controls feature audio taper potentiometers and Orange Drop® capacitor . . .', 4, 3, 8, 1999, '1911221668876214.jpg', '2022-11-19 15:43:34', '2022-11-19 15:43:34', 7, 7),
+(18, 'J-185 Original', ' The J-185 is believed by many to be one of Gibson\'s best acoustic instruments, yet it seems to be fairly obscure, much to the delight of devoted Gibson lovers. Originally released in the early 1950s and designed to be slight smaller than its larger companion, the SJ-200, the J-185 still offers superior performance and tone. The J-185 Original maintains unsurpassed balance of lows, mids, and highs, with equal response to every note on the fretboard. Acclaimed by many as the perfect body size and shape for any player.', 4, 3, 14, 3749, '1911221668876338.jpg', '2022-11-19 15:45:38', '2022-11-19 15:45:38', 7, 7);
 
 -- --------------------------------------------------------
 
@@ -164,10 +170,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `phone`, `role_id`, `created_at`, `updated_at`, `updated_by`, `picture`) VALUES
-(2, 'aloaloaloalo', 'aloaloaloalo123456789', 'miso.abdo@gmail.com', '$2y$10$zEVJM/zhTl69kQmqw/iiB.Ke7e3XFiFPj5Xibf9xsF7N4tr5sSKMy', NULL, 1, '2022-11-15 18:01:49', '2022-11-18 19:21:49', 6, 'abdelghafour_aouad.jfif'),
-(5, 'aloaloaloalo123456789', 'aloaloaloalo123456789', 'aloaloaloalo123456789@gmail.com', '$2y$10$p9HXC4oUArPcTH0Xk3SWNuXhHU3LloOstnCJfcMyGf3Fv52ecl1WW', NULL, 1, '2022-11-15 19:05:09', '2022-11-15 20:05:09', NULL, NULL),
-(6, 'test123456789', 'test123456789', 'abdo@gmail.com', '$2y$10$63ArqWI0V4ndxfPn1zVCo.tpSsnT.ats5lFp4cP4GCCK0ug6lH7By', NULL, 2, '2022-11-16 20:55:08', '2022-11-18 19:25:57', 6, NULL),
-(7, 'testo', 'testo', 'testo@gmail.com', '$2y$10$HkCKNpK4XbFDGg0ROZLScOFfgjYxS/ZgoItfZXcvQpUzUzizw2zd6', NULL, 1, '2022-11-19 12:24:44', '2022-11-19 13:24:44', NULL, NULL);
+(2, 'abdelghafour', 'aouad', 'a.aouad@student.youcode.ma', '$2y$10$Ut.WQTnPFHg9qvZk..O7t.5i6bkqJgp.OxezV5RGHhzyq6oc.lwQa', '0620785937', 2, '2022-11-15 18:01:49', '2022-11-19 16:10:59', 7, 'abdelghafour_aouad.jfif'),
+(5, 'amine', 'fathi', 'a.fathi@student.youcode.ma', '$2y$10$4.qtV4sHVr67RSnPCTqNAuBDZ6pXTgAdIaZSd7IU/wgMDGF5Di56S', '', 1, '2022-11-15 19:05:09', '2022-11-19 16:22:51', 2, NULL),
+(6, 'ahmed ', 'abderrafie', 'ahmedabderrafie@gmail.com', '$2y$10$fsuZtroaeY8OYO/0ZY68e.ziAzA5FlqNyA/AN6IxML0J5opiDoNJq', '', 2, '2022-11-16 20:55:08', '2022-11-19 16:24:03', 2, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

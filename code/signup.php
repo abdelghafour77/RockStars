@@ -19,7 +19,7 @@ if (isset($_SESSION['id'])) {
   <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
   <!-- Style CSS -->
   <link rel="stylesheet" href="assets/css/main.css" />
-  <title>Register - RockStars</title>
+  <title>Sign up - RockStars</title>
 </head>
 
 <body class="font-Poppins">
@@ -35,8 +35,8 @@ if (isset($_SESSION['id'])) {
     <section id="hero" class="flex justify-center min-h-full pt-2 ">
       <!-- items-center -->
       <div class="container felx glass-effect md:felx-row items-center mx-auto my-20 mb-40 space-y-0 md:space-y-0 max-h-fit max-w-2xl">
-        <h3 class="text-3xl text-center font-bold p-4">Register</h3>
-        <form id="form_register" action="scripts.php" method="POST" class=" px-8 pt-6 pb-8 mb-4">
+        <h3 class="text-3xl text-center font-bold p-4">Sign up</h3>
+        <form id="form_signup" action="scripts.php" method="POST" class=" px-8 pt-6 pb-8 mb-4">
           <div class="mb-4">
             <label class="block text-gray-900 text-sm font-bold mb-2" for="first-name">
               First name
@@ -71,10 +71,10 @@ if (isset($_SESSION['id'])) {
             </label>
             <input name="repeat_password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" id="repeat-password" type="password" placeholder="Repeat password">
           </div>
-          <input type="hidden" name="register">
+          <input type="hidden" name="signup">
           <div class="flex items-end justify-end">
-            <button class="bg-gold hover:bg-lightGold text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="register">
-              Register
+            <button class="bg-gold hover:bg-lightGold text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="signup">
+              Sign up
             </button>
           </div>
         </form>

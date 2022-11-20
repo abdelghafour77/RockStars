@@ -19,7 +19,7 @@ if (isset($_SESSION['id'])) {
   <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
   <!-- Style CSS -->
   <link rel="stylesheet" href="assets/css/main.css" />
-  <title>sign in - RockStars</title>
+  <title>Log in - RockStars</title>
 </head>
 
 <body class="font-Poppins">
@@ -35,7 +35,7 @@ if (isset($_SESSION['id'])) {
     <section id="hero" class="flex justify-center min-h-full pt-2 ">
       <!-- items-center -->
       <div class="container felx glass-effect md:felx-row items-center mx-auto my-20 mb-40 space-y-0 md:space-y-0 max-h-fit max-w-2xl">
-        <h3 class="text-3xl text-center font-bold p-4">sign in</h3>
+        <h3 class="text-3xl text-center font-bold p-4">Log in </h3>
         <form id="form_login" action="scripts.php" method="post" class="px-8 pt-6 pb-8 mb-4">
           <div class="mb-4">
             <label class="block text-gray-900 text-sm font-bold mb-2" for="email">
@@ -49,17 +49,17 @@ if (isset($_SESSION['id'])) {
             </label>
             <input name="password" value="<?= (isset($_COOKIE['password'])) ? $_COOKIE['password'] : '' ?>" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password">
           </div>
-          <input type="hidden" name="signin">
+          <input type="hidden" name="login">
           <div class="flex items-center mb-4">
             <input id="default-checkbox" checked type="checkbox" name="remember_me" class="w-4 h-4 accent-gold bg-gray-100 rounded border-gray-300 focus:ring-lightGold dark:focus:ring-gold dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
             <label for="default-checkbox" class="ml-2 text-sm font-medium text-black dark:text-black">Remember Me</label>
           </div>
-          <div class="flex items-center justify-between">
-            <a class="inline-block align-baseline font-bold text-sm text-gold hover:text-lightGold" href="#">
+          <div class="flex items-center justify-end">
+            <!-- <a class="inline-block align-baseline font-bold text-sm text-gold hover:text-lightGold" href="#">
               Forgot Password?
-            </a>
+            </a> -->
             <button class="bg-gold hover:bg-lightGold text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-              sign in
+              Log in
             </button>
           </div>
         </form>

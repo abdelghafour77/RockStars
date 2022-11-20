@@ -6,8 +6,8 @@ include_once 'connection.php';
 // var_dump($_REQUEST);
 // die;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      if (isset($_REQUEST['register'])) register();
-      if (isset($_REQUEST['signin'])) signIn();
+      if (isset($_REQUEST['signup'])) signup();
+      if (isset($_REQUEST['login'])) signIn();
       if (isset($_REQUEST['add'])) addProduct();
       if (isset($_REQUEST['update'])) updateProduct();
       if (isset($_REQUEST['delete'])) deleteProduct();
@@ -32,7 +32,7 @@ function getAllCategories()
       return $res;
 }
 
-function register()
+function signup()
 {
       extract($_POST);
       global $conn;
@@ -43,7 +43,7 @@ function register()
       if (isset($res["id"])) {
             $_SESSION['type_message'] = "error";
             $_SESSION['message'] = "Email are already used";
-            header('location: register.php');
+            header('location: signup.php');
             die();
       }
       $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -61,7 +61,7 @@ function register()
             $_SESSION['type_message'] = "error";
             $_SESSION['message'] = "Error in creation ! try again later";
       }
-      header('location: signin.php');
+      header('location: login.php');
 }
 
 function signIn()
@@ -75,7 +75,7 @@ function signIn()
       if (!isset($res["password"])) {
             $_SESSION['type_message'] = "error";
             $_SESSION['message'] = "Email incorrect";
-            header('location: signin.php');
+            header('location: login.php');
             die();
       }
       $ress = password_verify($password, $res["password"]);
@@ -100,7 +100,7 @@ function signIn()
       } else {
             $_SESSION['type_message'] = "error";
             $_SESSION['message'] = "Password incorrect";
-            header('location: signin.php');
+            header('location: login.php');
             die();
       }
 }

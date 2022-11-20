@@ -1,7 +1,7 @@
 // Validation using JustValidate library
-if (document.getElementById('form_register')) {
-  const register_validation = new JustValidate('#form_register');
-  register_validation
+if (document.getElementById('form_signup')) {
+  const signup_validation = new JustValidate('#form_signup');
+  signup_validation
     .addField('#first-name', [
       {
         rule: 'required',

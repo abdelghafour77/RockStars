@@ -36,8 +36,8 @@
                   <?php
                   } else {
                   ?>
-                        <a href="signin.php" class="block px-3 py-1 p-1 md:p-2 md:px-6 md:py-2 text-gold border border-gold rounded-lg baseline hover:text-black hover:bg-lightGold hover:border-lightGold"> sign in </a>
-                        <a href="register.php" class="block px-3 py-1 p-1 md:p-2 md:px-6 md:py-2 bg-gold rounded-lg baseline text-white hover:bg-lightGold hover:text-black"> Register </a>
+                        <a href="login.php" class="block px-3 py-1 p-1 md:p-2 md:px-6 md:py-2 text-gold border border-gold rounded-lg baseline hover:text-black hover:bg-lightGold hover:border-lightGold"> Log in </a>
+                        <a href="signup.php" class="block px-3 py-1 p-1 md:p-2 md:px-6 md:py-2 bg-gold rounded-lg baseline text-white hover:bg-lightGold hover:text-black"> Sign up </a>
                   <?php
                   }
                   ?>

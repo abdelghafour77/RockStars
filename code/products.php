@@ -74,8 +74,8 @@ $countProducts = countProducts();
                       <tr class="transition-all hover:bg-gray-100 hover:shadow-lg" onclick="getProduct(<?= $product['id'] ?>)" id="<?= $product['id'] ?>">
                         <td class="px-6 py-4 whitespace-nowrap">
                           <div class="flex items-center">
-                            <div class="flex-shrink-0 w-12 h-12">
-                              <img class="picture w-12 h-12 rounded-md" product="<?= $product['picture'] ?>" src="assets/img/products/<?= $product['picture'] ?>" alt="" />
+                            <div class="flex-shrink-0 w-12 h-12 ">
+                              <img class="mx-auto picture h-12 rounded-md" product="<?= $product['picture'] ?>" src="assets/img/products/<?= $product['picture'] ?>" alt="" />
                             </div>
                             <div class="ml-4">
                               <div class="model text-sm font-medium text-gray-900" product="<?= $product['model'] ?>"><?= $product['model'] ?></div>
@@ -109,20 +109,25 @@ $countProducts = countProducts();
     </div>
   </div>
   <!-- Modal -->
-  <div id="modal" class="z-20 h-screen w-full hidden fixed left-0 top-0 justify-center items-center bg-black bg-opacity-50">
-    <div class="bg-white rounded shadow-lg md:w-3/4 md:mx-0 w-full mx-2">
+  <div id="modal" class="z-20 snap-x h-screen w-full hidden fixed left-0 top-0 justify-center items-center bg-black bg-opacity-50" onclick="closeModal()">
+    <div class="z-30 bg-white max-h-screen rounded shadow-lg md:w-3/4 md:mx-0 w-full mx-2">
       <form action="scripts.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" id="id_product" name="id_product">
         <input type="hidden" id="type" name="">
-        <div class="border-b px-4 py-2">
+        <div class="flex justify-between border-b px-4 py-2">
           <h3>Add Product</h3>
+          <button type="button" onclick="closeModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
         <div class="p-2">
           <div class="flex justify-center">
 
             <!-- xl:w-96 -->
             <div class="mb-1">
-              <div class="picture rounded-sm w-16 mx-auto">
+              <div id="picture" class="hidden picture rounded-sm h-16 justify-center">
 
               </div>
               <div class="mb-2">

@@ -101,14 +101,16 @@ if (document.getElementById('form_login')) {
 if (document.getElementById('dropdown-card')) {
   // i need to fix problem of dropdown
   let dropdown_card = $("#dropdown-card");
-  $("#dropdown").click(function () {
-    dropdown_card.toggle();
+  $("#dropdown").click(function (e) {
+    if (dropdown_card.css('display') == 'block') {
+      dropdown_card.hide();
+    } else {
+      dropdown_card.show();
+    }
   });
   $(document).mouseup(function (e) {
     if (!dropdown_card.is(e.target) && dropdown_card.has(e.target).length === 0) {
       dropdown_card.hide();
-    } else {
-      dropdown_card.toggle();
     }
   });
 }
@@ -119,6 +121,8 @@ function openModal() {
   $("#add").removeClass("hidden").addClass("bloc");
 
   $("#modal").removeClass("hidden").addClass("flex");
+  $("#picture").removeClass("flex").addClass("hidden");
+
 }
 function closeModal() {
 
@@ -134,6 +138,7 @@ function getProduct(id) {
   $(".picture>img").remove();
   var img = $('<img>'); //Equivalent: $(document.createElement('img'))
   img.attr('src', 'assets/img/products/' + picture);
+  img.attr('class', 'h-16');
   img.appendTo('.picture');
 
   $('#id_product').val(id);
@@ -148,4 +153,5 @@ function getProduct(id) {
   $("#delete").removeClass("hidden").addClass("bloc");
   $("#add").removeClass("bloc").addClass("hidden");
   $("#modal").removeClass("hidden").addClass("flex");
+  $("#picture").removeClass("hidden").addClass("flex");
 }

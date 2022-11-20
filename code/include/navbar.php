@@ -15,7 +15,7 @@
                                     </button>
                               </div>
                               <!-- Dropdown card -->
-                              <div id="dropdown-card" class=" z-20 hidden absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max">
+                              <div id="dropdown-card" style="right: -200px;" class="z-20 hidden absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max">
                                     <div class="flex flex-col p-4 space-y-1 font-medium border-b">
                                           <span class="text-gray-800"><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></span>
                                           <span class="text-sm text-gray-400"><?= $_SESSION['email'] ?></span>

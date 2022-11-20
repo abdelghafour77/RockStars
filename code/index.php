@@ -32,11 +32,11 @@ $categories = getAllCategories();
     <!-- Hero Section -->
     <section id="hero" class="flex justify-center min-h-screen pt-2 md:pt-20">
       <!-- items-center -->
-      <div class="container felx felx-col-reverse md:felx-row items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0">
-        <div class="felx flex-col mb-4 md:mb-32 space-y-12">
+      <div class="container md:felx-row items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0">
+        <div class="mb-4 md:mb-32 space-y-12">
           <h1 class="text-2xl font-bold text-center md:text-3xl font-PoorStory text-gold text-shadow-lg">Welcome to the best website for musical instrument in MOROCCO.</h1>
         </div>
-        <div class="felx flex-col mb-32 pt-14 md:pt-0 space-y-12">
+        <div class="mb-32 pt-14 md:pt-0 space-y-12">
           <p class="text-base text-center md:text-base text-white text-shadow-lg">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam quisquam aut eos dolorum omnis expedita,aspernatur laborum laudantium in aliquid illo porro consectetur ad et voluptas quia laboriosam a harum!</p>
         </div>
       </div>

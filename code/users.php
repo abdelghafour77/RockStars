@@ -48,12 +48,8 @@ $countUsers = countUsers();
                   <thead class="bg-gray-50">
                     <tr>
                       <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Name</th>
-                      <!-- <th scope="col"
-                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                        Title
-                      </th> -->
-                      <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status</th>
                       <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Phone</th>
+                      <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Role</th>
                       <th scope="col" class="relative px-6 py-3">
                         <span class="sr-only">Edit</span>
                       </th>

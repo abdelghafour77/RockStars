@@ -1,14 +1,13 @@
 <?php
 include 'scripts.php';
-if (isset($_SESSION['id'])) {
-  if (isset($_GET['id_user'])) {
-    $user = getUser($_GET['id_user']);
-  } else {
-    $user = getUser($_SESSION['id']);
-  }
+include 'include/role.php';
+
+if (isset($_GET['id_user'])) {
+  $user = getUser($_GET['id_user']);
 } else {
-  header('location: 404.php');
+  $user = getUser($_SESSION['id']);
 }
+
 
 ?>
 

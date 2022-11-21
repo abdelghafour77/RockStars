@@ -1,9 +1,6 @@
 <?php
 include 'scripts.php';
-if (!isset($_SESSION['id'])) {
-  header('location: 404.php');
-  die();
-}
+include 'include/role.php';
 $categories = getAllCategories();
 $countCategories = countCategories();
 ?>

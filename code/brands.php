@@ -1,9 +1,6 @@
 <?php
 include 'scripts.php';
-if (!isset($_SESSION['id'])) {
-  header('location: 404.php');
-  die();
-}
+include 'include/role.php';
 $brands = getAllBrands();
 $countBrands = countBrands();
 ?>
@@ -58,11 +55,8 @@ $countBrands = countBrands();
                   <thead class="bg-gray-50">
                     <tr>
                       <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Picture</th>
-                      <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                        Name
-                      </th>
+                      <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Name</th>
                       <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Description</th>
-                      <!-- <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">price</th> -->
                     </tr>
                   </thead>
 
@@ -75,7 +69,6 @@ $countBrands = countBrands();
                             <div class="flex-shrink-0 md:h-5 h-3">
                               <img class="picture md:h-5 h-3" brand="<?= $brand['picture'] ?>" src="assets/img/brands/<?= $brand['picture'] ?>" alt="" />
                             </div>
-                            <!--  -->
                           </div>
                         </td>
                         <td class="brand px-6 py-4 whitespace-nowrap">

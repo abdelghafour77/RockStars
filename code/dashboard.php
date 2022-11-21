@@ -1,11 +1,7 @@
 <?php
-// var_dump($_);
-// die;
 require_once 'scripts.php';
-if (!isset($_SESSION['id'])) {
-  header('location: 404.php');
-  die();
-}
+include 'include/role.php';
+
 $users = getAllUsers();
 $countProducts = countProducts();
 $countUsers = countUsers();

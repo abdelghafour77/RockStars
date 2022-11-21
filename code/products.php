@@ -109,7 +109,7 @@ $countProducts = countProducts();
     </div>
   </div>
   <!-- Modal -->
-  <div id="modal" class="z-20 snap-x h-screen w-full hidden fixed left-0 top-0 justify-center items-center bg-black bg-opacity-50" onclick="closeModal()">
+  <div id="modal" class="z-20 snap-x h-screen w-full hidden fixed left-0 top-0 justify-center items-center bg-black bg-opacity-50">
     <div class="z-30 bg-white max-h-screen rounded shadow-lg md:w-3/4 md:mx-0 w-full mx-2">
       <form action="scripts.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" id="id_product" name="id_product">

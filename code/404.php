@@ -39,7 +39,8 @@
       </svg>
       <div class=" tracking-widest mt-4">
         <span class="text-gray-500 text-6xl block"><span>4 0 4</span></span>
-        <span class="text-gray-500 text-xl">Sorry, We couldn't find what you are looking for!</span>
+        <span class="text-gray-500 text-xl">Sorry, We couldn't find what you are looking for!</span><br>
+        <span class="text-gray-500 text-xl font-bold">Contact admin</span>
 
       </div>
     </center>

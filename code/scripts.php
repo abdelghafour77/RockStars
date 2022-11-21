@@ -102,7 +102,10 @@ function signIn()
                         setcookie('password', $password, time() + 3600 * 24 * 7);
                   }
             }
-            header('location: dashboard.php');
+            if ($_SESSION['role_id'] == 2)
+                  header('location: dashboard.php');
+            else
+                  header('location: index.php');
             die();
       } else {
             $_SESSION['type_message'] = "error";

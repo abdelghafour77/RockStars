@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       if (isset($_REQUEST['update'])) updateProduct();
       if (isset($_REQUEST['delete'])) deleteProduct();
       if (isset($_REQUEST['update_user'])) updateUser();
+      if (isset($_REQUEST['delete_user'])) deleteUser();
       if (isset($_REQUEST['add_brand'])) addBrand();
       if (isset($_REQUEST['update_brand'])) updateBrand();
       if (isset($_REQUEST['delete_brand'])) deleteBrand();
@@ -425,6 +426,31 @@ function updateUser()
       }
 
       header("location: edit.php?id_user=$id");
+      die();
+}
+function deleteUser()
+{
+      $id_user = $_POST['id'];
+      global $conn;
+      $sql = "SELECT * from users where id=$id_user";
+      $res = mysqli_query($conn, $sql);
+      $re = mysqli_fetch_row($res);
+      unlink('assets/img/users/' . $re[10]);
+      $sql = "DELETE FROM `users`
+           WHERE 
+           `id`=?";
+      $statement = mysqli_prepare($conn, $sql);
+      mysqli_stmt_bind_param($statement, 'i', $id_user);
+
+      $res = mysqli_stmt_execute($statement);
+      if ($res) {
+            $_SESSION['type_message'] = "success";
+            $_SESSION['message'] = "User are deleted with success";
+      } else {
+            $_SESSION['type_message'] = "error";
+            $_SESSION['message'] = "Error in delete ! try again later";
+      }
+      header('location: users.php');
       die();
 }
 function addBrand()

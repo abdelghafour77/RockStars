@@ -111,7 +111,7 @@ $countProducts = countProducts();
   <!-- Modal -->
   <div id="modal" class="z-20 snap-x h-screen w-full hidden fixed left-0 top-0 justify-center items-center bg-black bg-opacity-50">
     <div class="z-30 bg-white max-h-screen rounded shadow-lg md:w-3/4 md:mx-0 w-full mx-2">
-      <form action="scripts.php" method="POST" enctype="multipart/form-data">
+      <form id="form" action="scripts.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" id="id_product" name="id_product">
         <input type="hidden" id="type" name="">
         <div class="flex justify-between border-b px-4 py-2">
@@ -188,7 +188,7 @@ $countProducts = countProducts();
           <button type="button" id="cancel" onclick="closeModal()" class="bg-gray-600 hover:bg-gray-700 px-3 py-1 rounded text-white mr-1">cancel</button>
           <button type="submit" id="add" onclick="setType('add')" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1">save</button>
           <button type="submit" id="update" onclick="setType('update')" class="bg-orange-500 hover:bg-orange-600 px-3 py-1 rounded text-white mr-1">update</button>
-          <button type="submit" id="delete" onclick="setType('delete')" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">delete</button>
+          <button type="submit" id="delete" onclick="confirms();setType('delete')" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">delete</button>
         </div>
       </form>
     </div>

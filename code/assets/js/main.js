@@ -155,3 +155,57 @@ function getProduct(id) {
   $("#modal").removeClass("hidden").addClass("flex");
   $("#picture").removeClass("hidden").addClass("flex");
 }
+function getBrand(id) {
+  let brand = $('#' + id);
+  let picture = brand.find(".picture").attr("brand");
+  $(".picture>img").remove();
+  var img = $('<img>'); //Equivalent: $(document.createElement('img'))
+  img.attr('src', 'assets/img/brands/' + picture);
+  img.attr('class', 'h-16');
+  img.appendTo('.picture');
+
+  $('#id_brand').val(id);
+  $('#name').val(brand.find(".name").attr("brand"));
+  $('#description').val(brand.find(".description").attr("brand"));
+
+  $("#update").removeClass("hidden").addClass("bloc");
+  $("#delete").removeClass("hidden").addClass("bloc");
+  $("#add").removeClass("bloc").addClass("hidden");
+  $("#modal").removeClass("hidden").addClass("flex");
+  $("#picture").removeClass("hidden").addClass("flex");
+}
+function getCategory(id) {
+  let category = $('#' + id);
+  let picture = category.find(".picture").attr("category");
+  $(".picture>img").remove();
+  var img = $('<img>'); //Equivalent: $(document.createElement('img'))
+  img.attr('src', 'assets/img/categories/' + picture);
+  img.attr('class', 'h-16');
+  img.appendTo('.picture');
+
+  $('#id_category').val(id);
+  $('#name').val(category.find(".name").attr("category"));
+  $('#description').val(category.find(".description").attr("category"));
+
+  $("#update").removeClass("hidden").addClass("bloc");
+  $("#delete").removeClass("hidden").addClass("bloc");
+  $("#add").removeClass("bloc").addClass("hidden");
+  $("#modal").removeClass("hidden").addClass("flex");
+  $("#picture").removeClass("hidden").addClass("flex");
+}
+function confirms() {
+  event.preventDefault();
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      document.getElementById("form").submit();
+    }
+  })
+}

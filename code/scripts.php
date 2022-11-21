@@ -12,6 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       if (isset($_REQUEST['update'])) updateProduct();
       if (isset($_REQUEST['delete'])) deleteProduct();
       if (isset($_REQUEST['update_user'])) updateUser();
+      if (isset($_REQUEST['add_brand'])) addBrand();
+      if (isset($_REQUEST['update_brand'])) updateBrand();
+      if (isset($_REQUEST['delete_brand'])) deleteBrand();
+      if (isset($_REQUEST['add_category'])) addCategory();
+      if (isset($_REQUEST['update_category'])) updateCategory();
+      if (isset($_REQUEST['delete_category'])) deleteCategory();
 }
 
 function getAllBrands()
@@ -198,8 +204,8 @@ function updateProduct()
                               $sql = "SELECT * from products where id=$id_product";
                               $res = mysqli_query($conn, $sql);
                               $re = mysqli_fetch_row($res);
-                              var_dump($re);
-                              die();
+                              // var_dump($re);
+                              // die();
                               unlink('assets/img/products/' . $re[7]);
                               $sql = "UPDATE `products` SET
                                `model`=?,
@@ -419,5 +425,307 @@ function updateUser()
       }
 
       header("location: edit.php?id_user=$id");
+      die();
+}
+function addBrand()
+{
+      extract($_POST);
+      global $conn;
+      if ($_FILES['picture']['name'] != "") {
+            $fileName = $_FILES['picture']['name'];
+            $fileTmpName = $_FILES['picture']['tmp_name'];
+            $fileSize = $_FILES['picture']['size'];
+            $fileError = $_FILES['picture']['error'];
+
+            $fileExt = explode('.', $fileName);
+            $fileActualExt = strtolower(end($fileExt));
+            $allowed = array('jpg', 'png', 'jpeg', 'gif');
+
+            if (in_array($fileActualExt, $allowed)) {
+                  if ($fileError === 0) {
+                        if ($fileSize < 8388608) {  // 8MB
+                              $fileNameNew = date("dmy") . time() . "." . $fileActualExt; //create unique Id using time and date and name of 'cours'
+                              $fileNameNew = preg_replace('/\s+/', '_', $fileNameNew); //replace all space with "_"
+                              $fileDestination = "assets/img/brands/" . $fileNameNew;
+                              move_uploaded_file($fileTmpName, $fileDestination);
+
+                              $sql = "INSERT INTO 
+                              `brands`(`name`, `description`, `picture`) 
+                              VALUES (?,?,?)";
+
+                              $statement = mysqli_prepare($conn, $sql);
+                              mysqli_stmt_bind_param($statement, 'sss', $name, $description, $fileNameNew);
+
+                              $res = mysqli_stmt_execute($statement);
+
+                              if ($res) {
+                                    $_SESSION['type_message'] = "success";
+                                    $_SESSION['message'] = "Brand are created with success";
+                              } else {
+                                    $_SESSION['type_message'] = "error";
+                                    $_SESSION['message'] = "Error in creation ! try again later";
+                              }
+                        } else {
+                              $_SESSION['message'] = "Le fichier est trop grand";
+                        }
+                  } else {
+                        $_SESSION['message'] = "Erreur de téléchargement de fichier";
+                  }
+            } else {
+                  $_SESSION['message'] = "Erreur";
+            }
+      }
+      header('location: brands.php');
+}
+function updateBrand()
+{
+      extract($_POST);
+      global $conn;
+      if ($_FILES['picture']['name'] != "") {
+            $fileName = $_FILES['picture']['name'];
+            $fileTmpName = $_FILES['picture']['tmp_name'];
+            $fileSize = $_FILES['picture']['size'];
+            $fileError = $_FILES['picture']['error'];
+
+            $fileExt = explode('.', $fileName);
+            $fileActualExt = strtolower(end($fileExt));
+            $allowed = array('jpg', 'png', 'jpeg', 'gif');
+
+            if (in_array($fileActualExt, $allowed)) {
+                  if ($fileError === 0) {
+                        if ($fileSize < 8388608) {  // 8MB
+                              $fileNameNew = date("dmy") . time() . "." . $fileActualExt; //create unique Id using time and date and name of 'cours'
+                              $fileNameNew = preg_replace('/\s+/', '_', $fileNameNew); //replace all space with "_"
+                              $fileDestination = "assets/img/brands/" . $fileNameNew;
+                              move_uploaded_file($fileTmpName, $fileDestination);
+                              $sql = "SELECT * from brands where id=$id_brand";
+                              $res = mysqli_query($conn, $sql);
+                              $re = mysqli_fetch_row($res);
+                              // var_dump($re);
+                              // die();
+                              unlink('assets/img/brands/' . $re[3]); //khassni ntesti
+                              $sql = "UPDATE `brands` SET
+                               `name`=?,
+                               `description`=?,
+                               `picture`=?
+                              WHERE 
+                              `id`=?";
+
+                              $statement = mysqli_prepare($conn, $sql);
+                              mysqli_stmt_bind_param($statement, 'ssss', $name, $description, $fileNameNew, $id_brand);
+
+                              $res = mysqli_stmt_execute($statement);
+
+                              if ($res) {
+                                    $_SESSION['type_message'] = "success";
+                                    $_SESSION['message'] = "Brand are updated with success";
+                              } else {
+                                    $_SESSION['type_message'] = "error";
+                                    $_SESSION['message'] = "Error in update ! try again later";
+                              }
+                        } else {
+                              $_SESSION['message'] = "Le fichier est trop grand";
+                        }
+                  } else {
+                        $_SESSION['message'] = "Erreur de téléchargement de fichier";
+                  }
+            } else {
+                  $_SESSION['message'] = "Erreur";
+            }
+      } else {
+            $sql = "UPDATE `brands` SET
+            `name`=?,
+            `description`=? 
+           WHERE 
+           `id`=?";
+            $statement = mysqli_prepare($conn, $sql);
+            $a = mysqli_stmt_bind_param($statement, 'sss', $name, $description, $id_brand);
+            // var_dump($_POST);
+            // die();
+            $res = mysqli_stmt_execute($statement);
+            if ($res) {
+                  $_SESSION['type_message'] = "success";
+                  $_SESSION['message'] = "brand are updated with success";
+            } else {
+                  $_SESSION['type_message'] = "error";
+                  $_SESSION['message'] = "Error in update ! try again later";
+            }
+      }
+      header('location: brands.php');
+      die();
+}
+function deleteBrand()
+{
+      extract($_POST);
+      global $conn;
+      $sql = "SELECT * from brands where id=$id_brand";
+      $res = mysqli_query($conn, $sql);
+      $re = mysqli_fetch_row($res);
+      unlink('assets/img/brands/' . $re[3]);
+      $sql = "DELETE FROM `brands`
+           WHERE 
+           `id`=?";
+      $statement = mysqli_prepare($conn, $sql);
+      mysqli_stmt_bind_param($statement, 'i', $id_brand);
+
+      $res = mysqli_stmt_execute($statement);
+      if ($res) {
+            $_SESSION['type_message'] = "success";
+            $_SESSION['message'] = "Brand are created with success";
+      } else {
+            $_SESSION['type_message'] = "error";
+            $_SESSION['message'] = "Error in delete ! try again later";
+      }
+      header('location: brands.php');
+      die();
+}
+function addCategory()
+{
+      extract($_POST);
+      global $conn;
+      if ($_FILES['picture']['name'] != "") {
+            $fileName = $_FILES['picture']['name'];
+            $fileTmpName = $_FILES['picture']['tmp_name'];
+            $fileSize = $_FILES['picture']['size'];
+            $fileError = $_FILES['picture']['error'];
+
+            $fileExt = explode('.', $fileName);
+            $fileActualExt = strtolower(end($fileExt));
+            $allowed = array('jpg', 'png', 'jpeg', 'gif');
+
+            if (in_array($fileActualExt, $allowed)) {
+                  if ($fileError === 0) {
+                        if ($fileSize < 8388608) {  // 8MB
+                              $fileNameNew = date("dmy") . time() . "." . $fileActualExt; //create unique Id using time and date and name of 'cours'
+                              $fileNameNew = preg_replace('/\s+/', '_', $fileNameNew); //replace all space with "_"
+                              $fileDestination = "assets/img/categories/" . $fileNameNew;
+                              move_uploaded_file($fileTmpName, $fileDestination);
+
+                              $sql = "INSERT INTO 
+                              `categories`(`name`, `description`, `picture`) 
+                              VALUES (?,?,?)";
+
+                              $statement = mysqli_prepare($conn, $sql);
+                              mysqli_stmt_bind_param($statement, 'sss', $name, $description, $fileNameNew);
+
+                              $res = mysqli_stmt_execute($statement);
+
+                              if ($res) {
+                                    $_SESSION['type_message'] = "success";
+                                    $_SESSION['message'] = "Category are created with success";
+                              } else {
+                                    $_SESSION['type_message'] = "error";
+                                    $_SESSION['message'] = "Error in creation ! try again later";
+                              }
+                        } else {
+                              $_SESSION['message'] = "Le fichier est trop grand";
+                        }
+                  } else {
+                        $_SESSION['message'] = "Erreur de téléchargement de fichier";
+                  }
+            } else {
+                  $_SESSION['message'] = "Erreur";
+            }
+      }
+      header('location: categories.php');
+}
+function updateCategory()
+{
+      extract($_POST);
+      global $conn;
+      if ($_FILES['picture']['name'] != "") {
+            $fileName = $_FILES['picture']['name'];
+            $fileTmpName = $_FILES['picture']['tmp_name'];
+            $fileSize = $_FILES['picture']['size'];
+            $fileError = $_FILES['picture']['error'];
+
+            $fileExt = explode('.', $fileName);
+            $fileActualExt = strtolower(end($fileExt));
+            $allowed = array('jpg', 'png', 'jpeg', 'gif');
+
+            if (in_array($fileActualExt, $allowed)) {
+                  if ($fileError === 0) {
+                        if ($fileSize < 8388608) {  // 8MB
+                              $fileNameNew = date("dmy") . time() . "." . $fileActualExt; //create unique Id using time and date and name of 'cours'
+                              $fileNameNew = preg_replace('/\s+/', '_', $fileNameNew); //replace all space with "_"
+                              $fileDestination = "assets/img/categories/" . $fileNameNew;
+                              move_uploaded_file($fileTmpName, $fileDestination);
+                              $sql = "SELECT * from categories where id=$id_category";
+                              $res = mysqli_query($conn, $sql);
+                              $re = mysqli_fetch_row($res);
+                              unlink('assets/img/categories/' . $re[3]);
+                              $sql = "UPDATE `categories` SET
+                               `name`=?,
+                               `description`=?,
+                               `picture`=?
+                              WHERE 
+                              `id`=?";
+
+                              $statement = mysqli_prepare($conn, $sql);
+                              mysqli_stmt_bind_param($statement, 'ssss', $name, $description, $fileNameNew, $id_category);
+
+                              $res = mysqli_stmt_execute($statement);
+
+                              if ($res) {
+                                    $_SESSION['type_message'] = "success";
+                                    $_SESSION['message'] = "Category are updated with success";
+                              } else {
+                                    $_SESSION['type_message'] = "error";
+                                    $_SESSION['message'] = "Error in update ! try again later";
+                              }
+                        } else {
+                              $_SESSION['message'] = "Le fichier est trop grand";
+                        }
+                  } else {
+                        $_SESSION['message'] = "Erreur de téléchargement de fichier";
+                  }
+            } else {
+                  $_SESSION['message'] = "Erreur";
+            }
+      } else {
+            $sql = "UPDATE `categories` SET
+            `name`=?,
+            `description`=? 
+           WHERE 
+           `id`=?";
+            $statement = mysqli_prepare($conn, $sql);
+            $a = mysqli_stmt_bind_param($statement, 'sss', $name, $description, $id_category);
+            // var_dump($_POST);
+            // die();
+            $res = mysqli_stmt_execute($statement);
+            if ($res) {
+                  $_SESSION['type_message'] = "success";
+                  $_SESSION['message'] = "Category are updated with success";
+            } else {
+                  $_SESSION['type_message'] = "error";
+                  $_SESSION['message'] = "Error in update ! try again later";
+            }
+      }
+      header('location: categories.php');
+      die();
+}
+function deleteCategory()
+{
+      extract($_POST);
+      global $conn;
+      $sql = "SELECT * from categories where id=$id_category";
+      $res = mysqli_query($conn, $sql);
+      $re = mysqli_fetch_row($res);
+      unlink('assets/img/categories/' . $re[3]);
+      $sql = "DELETE FROM `categories`
+           WHERE 
+           `id`=?";
+      $statement = mysqli_prepare($conn, $sql);
+      mysqli_stmt_bind_param($statement, 'i', $id_category);
+
+      $res = mysqli_stmt_execute($statement);
+      if ($res) {
+            $_SESSION['type_message'] = "success";
+            $_SESSION['message'] = "Category are deleted with success";
+      } else {
+            $_SESSION['type_message'] = "error";
+            $_SESSION['message'] = "Error in delete ! try again later";
+      }
+      header('location: categories.php');
       die();
 }

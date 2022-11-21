@@ -67,7 +67,7 @@ $countCategories = countCategories();
                   <tbody class="bg-white divide-y divide-gray-200">
                     <?php
                     foreach ($categories as  $category) { ?>
-                      <tr class="transition-all hover:bg-gray-100 hover:shadow-lg" onclick="getBrand(<?= $category['id'] ?>)" id="<?= $category['id'] ?>">
+                      <tr class="transition-all hover:bg-gray-100 hover:shadow-lg" onclick="getCategory(<?= $category['id'] ?>)" id="<?= $category['id'] ?>">
                         <td class="px-6 py-4 whitespace-nowrap">
                           <div class="flex items-center">
                             <div class="flex-shrink-0 md:w-24 w-14">
@@ -103,69 +103,30 @@ $countCategories = countCategories();
   <!-- Modal -->
   <div id="modal" class="z-20 h-screen w-full hidden fixed left-0 top-0 justify-center items-center bg-black bg-opacity-50">
     <div class="bg-white rounded shadow-lg md:w-3/4 md:mx-0 w-full mx-2">
-      <form action="scripts.php" method="POST" enctype="multipart/form-data">
-        <input type="hidden" id="id_product" name="id_product">
+      <form id="form" action="scripts.php" method="POST" enctype="multipart/form-data">
+        <input type="hidden" id="id_category" name="id_category">
         <input type="hidden" id="type" name="">
         <div class="border-b px-4 py-2">
-          <h3>Add Product</h3>
+          <h3>Add Category</h3>
         </div>
         <div class="p-2">
           <div class="flex justify-center">
-
             <!-- xl:w-96 -->
             <div class="mb-1">
               <div class="picture rounded-sm w-16 mx-auto">
 
               </div>
               <div class="mb-2">
-                <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Model</label>
-                <input type="text" id="model" name="model" placeholder="Model" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Name</label>
+                <input type="text" id="name" name="name" placeholder="Name" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
               </div>
-              <div class="mb-2 flex">
-                <div class="mr-2 w-1/2">
-                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Brand</label>
-                  <select name="brand" id="brand" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-                    <option value="" disabled selected>Select Brand</option>
-                    <?php
-                    foreach ($brands as $brand) {
-                    ?>
-                      <option value="<?= $brand['id'] ?>"><?= $brand['name'] ?></option>
-                    <?php
-                    } ?>
-                  </select>
-                </div>
-                <div class="ml-2 w-1/2">
-                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Category</label>
-                  <select name="category" id="category" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-                    <option value="" disabled selected>Select Category</option>
-                    <?php
-                    foreach ($categories as $category) {
-                    ?>
-                      <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
-                    <?php
-                    } ?>
-                  </select>
-                </div>
-              </div>
-
-              <div class="mb-2 flex">
-                <div class="mr-2 w-1/2">
-                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Quantity</label>
-                  <input type="number" id="quantity" name="quantity" placeholder="Quantity" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
-                </div>
-                <div class="ml-2 w-1/2">
-                  <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Price</label>
-                  <input type="number" id="price" name="price" placeholder="Price" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
-                </div>
-              </div>
-
               <div class="mb-2">
                 <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Description</label>
-                <textarea name="description" id="description" cols="30" rows="3" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"> </textarea>
+                <textarea name="description" id="description" cols="30" rows="3" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"></textarea>
               </div>
               <div class="mb-1">
                 <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Picture</label>
-                <input id="picture" name="picture" type="file" class="form-control cursor-pointer block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-describedby="file_input_help" />
+                <input name="picture" type="file" class="form-control cursor-pointer block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-describedby="file_input_help" />
                 <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
               </div>
             </div>
@@ -173,9 +134,9 @@ $countCategories = countCategories();
         </div>
         <div class="flex justify-end items-center w-100 border-t p-2">
           <button type="button" id="cancel" onclick="closeModal()" class="bg-gray-600 hover:bg-gray-700 px-3 py-1 rounded text-white mr-1">cancel</button>
-          <button type="submit" id="add" onclick="setType('add')" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1">save</button>
-          <button type="submit" id="update" onclick="setType('update')" class="bg-orange-500 hover:bg-orange-600 px-3 py-1 rounded text-white mr-1">update</button>
-          <button type="submit" id="delete" onclick="setType('delete')" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">delete</button>
+          <button type="submit" id="add" onclick="setType('add_category')" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1">save</button>
+          <button type="submit" id="update" onclick="setType('update_category')" class="bg-orange-500 hover:bg-orange-600 px-3 py-1 rounded text-white mr-1">update</button>
+          <button type="submit" id="delete" onclick="confirms();setType('delete_category')" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">delete</button>
         </div>
       </form>
     </div>

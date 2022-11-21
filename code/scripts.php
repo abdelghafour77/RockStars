@@ -58,7 +58,8 @@ function signup()
       $sql = "INSERT INTO users (first_name, last_name, email, password, created_at)
                 values (?,?,?,?,?)";
       $statement = mysqli_prepare($conn, $sql);
-      mysqli_stmt_bind_param($statement, 'sssss', $first_name, $last_name, $email, $password, date("Y-m-d H:i:s"));
+      $date = date("Y-m-d H:i:s");
+      mysqli_stmt_bind_param($statement, 'sssss', $first_name, $last_name, $email, $password, $date);
       $res = mysqli_stmt_execute($statement);
 
       if ($res) {
@@ -438,10 +439,9 @@ function deleteUser()
       $sql = "SELECT * from users where id=$id_user";
       $res = mysqli_query($conn, $sql);
       $re = mysqli_fetch_row($res);
-      unlink('assets/img/users/' . $re[10]);
-      $sql = "DELETE FROM `users`
-           WHERE 
-           `id`=?";
+      if ($re[10] != '')
+            unlink('assets/img/users/' . $re[10]);
+      $sql = "DELETE FROM `users`WHERE `id`=?";
       $statement = mysqli_prepare($conn, $sql);
       mysqli_stmt_bind_param($statement, 'i', $id_user);
 

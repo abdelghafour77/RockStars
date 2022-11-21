@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 20 nov. 2022 à 22:34
+-- Généré le : lun. 21 nov. 2022 à 23:33
 -- Version du serveur : 8.0.27
 -- Version de PHP : 7.4.26
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `brands` (
   `description` text NOT NULL,
   `picture` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `brands`
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `description` text NOT NULL,
   `picture` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `categories`
@@ -102,14 +102,14 @@ CREATE TABLE IF NOT EXISTS `products` (
   `created_by` int NOT NULL,
   `updated_by` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `products`
 --
 
 INSERT INTO `products` (`id`, `model`, `description`, `brands_id`, `categories_id`, `quantity`, `price`, `picture`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(8, 'CFX', ' Crafted for the world’s biggest stages. Pure sound flows effortlessly from artist to piano to audience, filling the world’s most prestigious concert halls.\r\n\r\n', 1, 1, 9, 4999, '1911221668874796.jpg', '2022-11-19 15:19:56', '2022-11-19 15:19:56', 7, 7),
+(8, 'CFX', ' Crafted for the world’s biggest stages. Pure sound flows effortlessly from artist to piano to audience, filling the world’s most prestigious concert halls.\r\n\r\n', 1, 1, 9, 4999, '1911221668874796.jpg', '2022-11-19 15:19:56', '2022-11-21 20:29:03', 7, 8),
 (9, 'CF6', ' The choice of mid-sized concert halls. Concert grand DNA, sound and resonance to make every performance bigger than the stage.', 1, 1, 5, 40800, '1911221668874881.jpg', '2022-11-19 15:21:21', '2022-11-20 16:54:40', 7, 2),
 (10, 'STAR Maple Drum Kits', ' STAR is the new flagship line for TAMA drums. It takes the knowledge and research we cultivated for the Starclassic series to the next level, by reexamining every detail to enhance shell resonance.\r\nSTAR Maple shell\'s \"Solid Core Ply\" is a totally new design for this series. This unique shell provides the warm, open tone of Maple, combined with the rich, hearty sound of a solid ply shell.', 2, 4, 14, 1000, '1911221668875067.png', '2022-11-19 15:24:27', '2022-11-19 15:24:27', 7, 7),
 (11, 'Cocktail-JAM Mini Kit', 'TAMA Cocktail-JAM Mini is a compact and easy-to-transport drum kit. Its drums are 2 inches smaller in diameter than the full-size Cocktail-JAM Kit. It is compact in size but very scalable, allowing you to add cymbals and cowbells by using our compact clamps and attachments. You can pack the entire kit and its hardware easily into just two bags, which are included with the kit. Also includes tom mounting arms and single bass drum pedal.', 2, 4, 21, 7600, '1911221668875171.png', '2022-11-19 15:26:11', '2022-11-19 15:26:11', 7, 7),
@@ -165,17 +165,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_by` int DEFAULT NULL,
   `picture` text CHARACTER SET utf8 COLLATE utf8_general_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `phone`, `role_id`, `created_at`, `updated_at`, `updated_by`, `picture`) VALUES
-(2, 'abdelghafour', 'aouad', 'a.aouad@student.youcode.ma', '$2y$10$Ut.WQTnPFHg9qvZk..O7t.5i6bkqJgp.OxezV5RGHhzyq6oc.lwQa', '0620785937', 2, '2022-11-15 18:01:49', '2022-11-19 16:10:59', 7, 'abdelghafour_aouad.jfif'),
-(5, 'amine', 'fathi', 'a.fathi@student.youcode.ma', '$2y$10$4.qtV4sHVr67RSnPCTqNAuBDZ6pXTgAdIaZSd7IU/wgMDGF5Di56S', '', 1, '2022-11-15 19:05:09', '2022-11-20 17:54:09', 8, NULL),
-(6, 'ahmed ', 'abderrafie', 'ahmedabderrafie@gmail.com', '$2y$10$fsuZtroaeY8OYO/0ZY68e.ziAzA5FlqNyA/AN6IxML0J5opiDoNJq', '', 2, '2022-11-16 20:55:08', '2022-11-19 16:24:03', 2, NULL),
-(8, 'salah eddine', 'hanaoui', 's.hanaoui@gmail.com', '$2y$10$yKDk2ap94wnk7htuJN/lV.41otPLu/XyzQDiaJehU2HnlMxd2q9BO', NULL, 1, '2022-11-20 17:53:04', '2022-11-20 18:53:04', NULL, NULL);
+(1, 'abdelghafour', 'aouad', 'a.aouad@student.youcode.ma', '$2y$10$7N49cZ6BWTJTMx7ns4dmO.NJRurqV2gtEJ0uKMSCnRuSi/KaYDBd2', '0620785937', 2, '2022-11-15 17:01:49', '2022-11-21 22:17:28', 9, 'abdelghafour_aouad.jfif'),
+(2, 'Ahmed', 'Abderrafie', 'a.abderrafie@youcode.ma', '$2y$10$3ENI8JgvkxtzTXYk17hcw.SvC6wTIKqmVXHMmqQ21V3h9hiL5ajb2', '', 2, '2022-11-15 18:05:09', '2022-11-21 22:18:35', 9, 'ahmed.png');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

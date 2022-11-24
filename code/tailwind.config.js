@@ -10,7 +10,6 @@ module.exports = {
       'PoorStory': ['Poor Story, cursive'],
       'Poppins': ['Poppins, sans-serif'],
     },
-
     extend: {
       colors: {
         gold: '#e3b04b',

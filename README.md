@@ -3,4 +3,11 @@
 ---
 
 Create Store of musical instruments name "RockStars"  
-![alt](code/assets/img/RockStars.png)
+![Logo](mockup/RockStars.png)
+
+## Mockup
+
+### Desktop
+
+- Landing Page
+  ![alt](mockup/landing%20page%20-%20Desktop.png)

@@ -3,13 +3,12 @@
 Create Store of musical instruments name "RockStars"  
 ![Logo](mockup/RockStars.png)
 
-# Mockup
-
 # Demo
 
 Click Here to see demo of this project
 [RockStars](https://rockstars-project.000webhostapp.com/)
 
+# Mockup
 
 ### Desktop
 

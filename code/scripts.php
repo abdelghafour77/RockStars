@@ -380,6 +380,7 @@ function updateUser()
             `email`=?,
             `phone`=?,
             `password`=?,
+            `role_id`=?,
             `updated_at`=?,
             `updated_by`=? 
            WHERE 
@@ -388,13 +389,14 @@ function updateUser()
             $id_update = $_SESSION['id'];
             $time = date("Y-m-d H:i:s");
             $statement = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($statement, 'ssssssss', $first_name, $last_name, $email, $phone, $password, $time, $id_update, $id);
+            mysqli_stmt_bind_param($statement, 'sssssssss', $first_name, $last_name, $email, $phone, $password, $role, $time, $id_update, $id);
       } else {
             $sql = "UPDATE `users` SET
             `first_name`=?,
             `last_name`=?,
             `email`=?,
             `phone`=?,
+            `role_id`=?,
             `updated_at`=?,
             `updated_by`=? 
            WHERE 
@@ -403,7 +405,7 @@ function updateUser()
             $id_update = $_SESSION['id'];
             $time = date("Y-m-d H:i:s");
             $statement = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($statement, 'sssssss', $first_name, $last_name, $email, $phone, $time, $id_update, $id);
+            mysqli_stmt_bind_param($statement, 'ssssssss', $first_name, $last_name, $email, $phone, $role, $time, $id_update, $id);
       }
 
       // var_dump($statement);
@@ -418,7 +420,7 @@ function updateUser()
       }
       if ($id == $id_update) {
 
-            $sql = "SELECT *  FROM users WHERE id = '$id_update' ";
+            $sql = "SELECT users.* , roles.name as role FROM users inner join roles on roles.id=users.role_id WHERE users.id = '$id_update' ";
             $res = mysqli_query($conn, $sql);
             $res = mysqli_fetch_assoc($res);
 
@@ -427,6 +429,8 @@ function updateUser()
             $_SESSION['last_name'] = $res['last_name'];
             $_SESSION['email'] = $res['email'];
             $_SESSION['picture'] = $res['picture'];
+            $_SESSION['role'] = $res['role'];
+            $_SESSION['role_id'] = $res['role_id'];
       }
 
       header("location: edit.php?id_user=$id");
@@ -757,4 +761,12 @@ function deleteCategory()
       }
       header('location: categories.php');
       die();
+}
+function getRoles()
+{
+      global $conn;
+      $sql = "SELECT * FROM roles";
+
+      $res = mysqli_query($conn, $sql);
+      return $res;
 }

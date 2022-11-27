@@ -7,6 +7,7 @@ if (isset($_GET['id_user'])) {
 } else {
   $user = getUser($_SESSION['id']);
 }
+$roles = getRoles();
 
 
 ?>
@@ -44,12 +45,11 @@ if (isset($_GET['id_user'])) {
       <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
         <!-- Main content header -->
         <div class="flex flex-col items-start justify-between pb-6 space-y-4 border-b lg:items-center lg:space-y-0 lg:flex-row">
-          <h1 class="text-2xl font-semibold whitespace-nowrap">Dashboard</h1>
+          <h1 class="text-2xl font-semibold whitespace-nowrap">Edit Profil</h1>
         </div>
         <!-- start -->
 
-        <div class="bg-gray-50 py-10 w-full min-h-max gap-4 flex-wrap flex justify-center items-start">
-
+        <div class=" py-10 w-full min-h-max gap-4 flex-col md:flex-row flex-wrap flex justify-center items-center md:items-start">
           <div class=" p-2 bg-white rounded-xl transform transition-all shadow-lg">
             <div class="mb-2 text-center">
               <div class="w-24 h-24 flex items-center">
@@ -58,7 +58,7 @@ if (isset($_GET['id_user'])) {
               <label for="exampleFormControlInput1" class="form-label text-center inline-block mb-2 text-gray-700">ID : <?= $user['id'] ?></label>
             </div>
           </div>
-          <div class="p-2 bg-white rounded-xl transform transition-all shadow-lg w-1/2">
+          <div class="p-2 bg-white rounded-xl transform transition-all shadow-lg w-full md:w-1/2">
             <form action="scripts.php" method="post">
               <input type="hidden" name="id" value="<?= $user['id'] ?>">
               <div class="mb-2">
@@ -81,6 +81,14 @@ if (isset($_GET['id_user'])) {
               <div class="mb-2">
                 <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Change Password</label>
                 <input autocomplete="off" type="password" id="password" name="password" placeholder="Password" value="" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+              </div>
+              <div class="mb-2">
+                <label for="exampleFormControlInput1" class="form-label inline-block mb-2 text-gray-700">Role</label>
+                <select autocomplete="off" id="role" name="role" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+                  <?php foreach ($roles as $role) { ?>
+                    <option value="<?= $role['id'] ?>" <?= $user['role_id'] == $role['id'] ? 'selected' : '' ?>><?= $role['name'] ?></option>
+                  <?php } ?>
+                </select>
               </div>
               <div class="text-end">
                 <button type="submit" name="delete_user" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Delete</button>

@@ -6,7 +6,7 @@ Create Store of musical instruments name "RockStars"
 # Demo
 
 Click Here to see demo of this project
-[RockStars](https://rockstars-project.000webhostapp.com/)
+[RockStars](https://rockstars-project.000webhostapp.com/).
 
 # Mockup
 

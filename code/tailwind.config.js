@@ -10,13 +10,7 @@ module.exports = {
       'PoorStory': ['Poor Story, cursive'],
       'Poppins': ['Poppins, sans-serif'],
     },
-    // screens: {
-    //   sm: '480px',
-    //   md: '768px',
-    //   // lg: '976px',
-    //   lg: '1200px',
-    //   xl: '1440px'
-    // },
+
     extend: {
       colors: {
         gold: '#e3b04b',
